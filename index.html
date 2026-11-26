@@ -121,6 +121,15 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
 .chars button{background:var(--panel);border:4px solid var(--glass);border-radius:24px;padding:14px 6px;font-size:18px;font-weight:700;box-shadow:0 6px 0 #16206b}
 .chars button span{display:block;width:84px;height:84px;margin:0 auto 4px}
 .chars button:active{transform:translateY(4px);box-shadow:0 2px 0 #16206b}
+#quitg{position:absolute;left:8px;top:8px;z-index:6;background:#0008;border:2px solid #ffffff66;border-radius:999px;padding:5px 12px;font-size:13px;font-weight:700}
+#quit{position:fixed;left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:6;background:#ffffff1c;border:2px solid #ffffff44;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:700}
+#qc,#bye{position:fixed;inset:0;display:none;z-index:40;background:#0b114af5;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:24px}
+#qc.on,#bye.on{display:flex}
+#qc h2,#bye h2{margin:0;line-height:1.4;font-size:clamp(24px,7vw,34px)}
+#qc .b{display:flex;gap:12px}
+#qc button,#bye button{background:var(--gold);color:#3a2a00;font-weight:700;font-size:18px;padding:12px 22px;border-radius:16px;box-shadow:0 4px 0 #a07800}
+#qc button.g{background:#ffffff22;color:#fff;box-shadow:none}
+#bye p{margin:0;opacity:.9;max-width:320px;line-height:1.5}
 #hud{padding:10px 14px 4px;display:flex;gap:10px;align-items:flex-start}
 #hud .tip{flex:1;font-size:clamp(13px,3.6vw,18px);line-height:1.35;white-space:nowrap;background:rgba(255,255,255,.1);border-radius:14px;padding:8px 12px}
 .bump{position:absolute;left:0;right:0;top:-6px;font-size:34px;font-weight:700;pointer-events:none;animation:bumpup 1s forwards;text-shadow:0 0 8px #fff,0 0 3px #fff}
@@ -216,6 +225,7 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
   <button id="swap" type="button" aria-label="เปลี่ยนตัวละคร"><span class="face" id="swapface"></span><span class="arr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 8a8 8 0 0 0-14-2M4 4v4h4M4 16a8 8 0 0 0 14 2M20 20v-4h-4"/></svg></span></button>
   <div class="sign"><span class="wood">ภารกิจพิชิต<em>สระไทย</em></span><span class="rib">ออกเดินทางไปเรียนรู้สระกันเถอะ!</span></div>
   <div class="map" id="map"></div>
+  <button id="quit" type="button">ออกจากเกม</button>
 </section>
 
 <section id="level" class="screen">
@@ -239,6 +249,8 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
   <div class="pbtns"><button id="psave" type="button">บันทึก</button><button id="preset" class="g" type="button">คืนค่าเดิม</button><button id="pcancel" class="g" type="button">ยกเลิก</button></div>
 </div>
 
+<div id="qc"><h2>ออกจากเกมนี้ใช่ไหม</h2><div class="b"><button id="qyes" type="button">ออก</button><button id="qno" class="g" type="button">เล่นต่อ</button></div></div>
+<div id="bye"><h2>ไว้เจอกันใหม่นะ</h2><p>ปิดเกมนี้ได้เลย โดยปัดปิดแท็บหรือปิดแอปเบราว์เซอร์</p><button id="byeback" type="button">กลับไปเล่นต่อ</button></div>
 <div id="soon"><h2>ด่านนี้ยังไม่พร้อม<br>รอก่อนนะ</h2><button id="soonback" type="button">กลับหน้าแรก</button></div>
 
 <section id="pick" class="screen">
@@ -254,6 +266,7 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
     <div id="score">คะแนน<b>0</b></div>
   </div>
   <div id="arena">
+    <button id="quitg" type="button">ออก</button>
     <svg id="space" viewBox="90 0 220 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
       <defs>
         <radialGradient id="neb1" cx="22%" cy="30%" r="60%"><stop offset="0" stop-color="#8a2be2" stop-opacity=".55"/><stop offset="1" stop-color="#8a2be2" stop-opacity="0"/></radialGradient>
@@ -371,25 +384,25 @@ let ch=0,php,ehp,score,queue=[],cur,busy=true,playing=false,rec=null,tmo=null,mi
 function thaiVoice(){try{const vs=speechSynthesis.getVoices().filter(v=>/^th/i.test(v.lang));if(!vs.length)return null;for(const re of [/premium/i,/enhanced/i,/natural|neural/i,/narisa|kanya|google/i]){const f=vs.find(v=>re.test(v.name));if(f)return f}return vs[0]}catch(e){return null}}
 try{speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>{}}catch(e){}
 // อ่านโจทย์ออกเสียง เช่น "กอ" แล้ว "อา" (เวลายังไม่เดินระหว่างนี้)
-function speakSeq(parts,done,pre){
-  const id=++hintId;let finished=false;
+function speakSeq(parts,done){
+  const id=++hintId;let finished=false,i=0,started=false,tries=0;
   const fin=()=>{if(finished||id!==hintId)return;finished=true;done()};
   try{
     if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();
-    let i=0,started=false;
-    const noVoice=()=>{if(started||finished||id!==hintId)return;$("#fb").textContent="ไม่ได้ยินเสียง? เช็กเสียงเครื่อง/โหมดเงียบ (ดูคำอ่านบนจอได้)";setTimeout(fin,2500)};
-    const next=()=>{
+    const say=()=>{
       if(id!==hintId||finished)return;
-      if(i>=parts.length){fin();return}
-      const first=i===0;
-      const u=new SpeechSynthesisUtterance(parts[i++]);u.lang="th-TH";u.rate=.92;u.pitch=1.12;const v=thaiVoice();if(v)u.voice=v;
-      if(first){u.onstart=()=>{started=true};setTimeout(noVoice,2000)}
-      if(pre&&i===parts.length){const o=u.onstart;u.onstart=()=>{o&&o();if(id===hintId&&!finished)pre()}} // เริ่มเปิดไมค์ตอนเริ่มอ่านเสียงสุดท้าย เพื่อให้ไมค์พร้อมพอดีตอนอ่านจบ
-      u.onend=()=>{if(i>=parts.length)next();else setTimeout(next,160)};u.onerror=()=>setTimeout(next,80);
+      if(i>=parts.length){fin();return} // อ่านครบแล้วค่อยเปิดไมค์ (เปิดไมค์ระหว่างอ่านทำให้ iPhone ตัดเสียงท้าย)
+      const k=i;let live=true;
+      const u=new SpeechSynthesisUtterance(parts[k]);u.lang="th-TH";u.rate=.92;u.volume=1;u.pitch=1.12;const v=thaiVoice();if(v)u.voice=v;
+      const go=()=>{if(!live)return;live=false;if(id!==hintId||finished)return;i=k+1;setTimeout(say,k+1>=parts.length?0:100)};
+      u.onstart=()=>{started=true};u.onend=go;u.onerror=go;
       speechSynthesis.speak(u);
+      // iPhone บางครั้งเสียงอ่านไม่เริ่มทันที (มักเกิดหลังใช้ไมค์): ถ้า 1 วินาทีแล้วยังเงียบ ให้ล้างคิวแล้วอ่านใหม่ 1 ครั้ง
+      if(k===0&&tries<1)setTimeout(()=>{if(!started&&live&&id===hintId&&!finished){tries++;live=false;try{speechSynthesis.cancel()}catch(e){}setTimeout(say,60)}},1000);
     };
-    next();
-    setTimeout(fin,4500);
+    say();
+    setTimeout(()=>{if(started||finished||id!==hintId)return;$("#fb").textContent="ไม่ได้ยินเสียง? เช็กเสียงเครื่อง/โหมดเงียบ (ดูคำอ่านบนจอได้)";setTimeout(fin,1500)},2600);
+    setTimeout(fin,5000);
   }catch(e){fin()}
 }
 
@@ -472,10 +485,6 @@ const MASCOT={
 };
 const showMascot=()=>{$("#mascot").innerHTML='<div class="pad2"></div>'+MASCOT[stage]};
 const hintParts=w=>[w[0][0]+"อ",STAGES[stage].vow];
-function preOpen(){
-  if(!playing||busy||!SR||micDenied)return;
-  gotSpeech=false;listen(false);
-}
 function stopSpeech(){hintId++;try{speechSynthesis.cancel()}catch(e){}}
 function startTimer(){
   armed=true;timerOn=true;extended=false;
@@ -550,6 +559,11 @@ $("#levels").onclick=e=>{const b=e.target.closest("button[data-k]");if(!b||primi
   primeMic().then(()=>{priming=false;$("#micnote").style.display="none";start()});
 };
 $("#tohome").onclick=()=>show("home");
+$("#quitg").onclick=()=>$("#qc").classList.add("on");
+$("#qno").onclick=()=>$("#qc").classList.remove("on");
+$("#qyes").onclick=()=>{$("#qc").classList.remove("on");stopAll();$("#end").classList.remove("on");fxOn=false;show("home")};
+$("#quit").onclick=()=>{$("#bye").classList.add("on");try{window.close()}catch(e){}}; // เว็บปิดแท็บเองไม่ได้ถ้าไม่ได้เปิดโดยสคริปต์ จึงมีหน้าลาแทน
+$("#byeback").onclick=()=>$("#bye").classList.remove("on");
 $("#pickback").onclick=()=>show("home");
 $("#swap").onclick=()=>show("pick");
 $("#soonback").onclick=()=>{$("#soon").classList.remove("on");shipAt=0;placeShip(0,true)};
@@ -618,7 +632,7 @@ $("#hear").onclick=()=>{if(!cur||busy)return;
   const bar=$("#timer div");bar.style.transition="none";bar.style.width="100%";
   $("#hear").disabled=true;$("#mic").disabled=true;$("#mic").classList.remove("ready","live");
   $("#fb").style.color="";$("#fb").textContent=`ฟังนะ: “${cur[0][0]}อ – ${STAGES[stage].vow}”`;
-  speakSeq(hintParts(cur),hintDone,preOpen)};
+  speakSeq(hintParts(cur),hintDone)};
 $("#mic").onclick=()=>{if(busy||!SR)return;micDenied=false;$("#mic").classList.remove("ready");if(!armed)startTimer();listen(true)};
 
 function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.toggle("on",s.id===id));if(id==="home")requestAnimationFrame(()=>{drawTrail();placeShip(shipAt,false)})}
@@ -653,18 +667,14 @@ function nextWord(){
   const bar=$("#timer div");bar.style.transition="none";bar.style.width="100%";
   clearTimeout(tmo);
   $("#mic").classList.remove("ready","live");$("#mic").disabled=true;$("#hear").disabled=true;
-  speakSeq(hintParts(cur),hintDone,preOpen);
+  speakSeq(hintParts(cur),hintDone);
 }
 
-// ตัดเสียงอ่านโจทย์ของระบบ ("กอ" "อา") ที่ไมค์จับติดมาต้นประโยคออก
-function stripEcho(t){let n=canon(t);const c=cur[0][0],v=STAGES[stage].vow;
-  for(const p of [canon(c+"อ"),canon(v)])if(p&&n.startsWith(p))n=n.slice(p.length);
-  return n}
 function listen(manual){
   if(!SR||busy||!playing||(micDenied&&!manual))return;
   try{rec&&rec.abort()}catch(e){}
   rec=new SR();rec.lang="th-TH";rec.maxAlternatives=5;rec.interimResults=true;
-  const mine=rec;recLive=true;micReady=false;const early=!armed;
+  const mine=rec;recLive=true;micReady=false;
   // เริ่มนับเวลาเมื่อไมค์พร้อมฟังจริง ไม่ใช่ตอนสั่งเปิดไมค์ (เปิดไมค์บนมือถือใช้เวลาประมาณ 1 วินาที)
   const ready=()=>{if(mine!==rec)return;micReady=true;if(armed&&!busy&&!timerOn)startTimer()};
   rec.onaudiostart=ready;
@@ -673,8 +683,7 @@ function listen(manual){
   rec.onresult=e=>{
     if(busy||mine!==rec)return;
     const R=e.results[e.results.length-1];
-    if(!armed)return; // ยังอ่านโจทย์อยู่ ยังไม่ตัดสิน
-    const A=[...R].map(a=>({t:early?stripEcho(a.transcript):a.transcript,c:a.confidence}));
+    const A=[...R].map(a=>({t:a.transcript,c:a.confidence}));
     if(!R.isFinal){
       // ได้ยินคำที่ตรงและมั่นใจพอแล้วระหว่างที่ยังพูดอยู่ → ผ่านทันที ไม่ต้องรอครบเวลา
       gotSpeech=true;
