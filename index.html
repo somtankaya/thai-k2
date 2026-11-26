@@ -32,14 +32,15 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
 .map{position:relative;z-index:2;flex:1;width:min(430px,100%);display:flex;flex-direction:column;justify-content:space-evenly;padding:56px 10px 10px}
 .node{position:relative;background:none;display:flex;flex-direction:column;align-items:center;width:150px;padding:0;margin:0}
 .node.L{align-self:flex-start;margin-left:10%}.node.R{align-self:flex-end;margin-right:10%}
-.node .ball{border-radius:58% 42% 55% 45% / 48% 56% 44% 52%!important;position:relative;width:clamp(70px,12vh,100px);height:clamp(70px,12vh,100px);animation:spin 9s linear infinite;box-shadow:inset -10px -12px 0 #0003,0 0 22px var(--g)}
+.node .ball{border-radius:58% 42% 55% 45% / 48% 56% 44% 52%!important;position:relative;width:clamp(70px,12vh,100px);height:clamp(70px,12vh,100px);border-radius:50%;animation:spin 9s linear infinite;box-shadow:inset -10px -12px 0 #0003,0 0 22px var(--g)}
 .node .ball::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 24% 28%,#0003 0 9%,transparent 10%),radial-gradient(circle at 70% 22%,#0003 0 6%,transparent 7%),radial-gradient(circle at 62% 66%,#0003 0 12%,transparent 13%),radial-gradient(circle at 26% 74%,#0003 0 7%,transparent 8%),radial-gradient(circle at 85% 52%,#0003 0 5%,transparent 6%)}
 .node.first .ball{width:clamp(92px,15vh,124px);height:clamp(92px,15vh,124px);border-radius:46% 54% 42% 58% / 56% 44% 56% 44%!important;box-shadow:inset -10px -12px 0 #0003,0 0 26px #ffd23f,0 0 50px #ffd23f66;animation:spin 7s linear infinite}
 .node.first{filter:none}
+.node .ball{box-shadow:inset -10px -12px 0 #0003,0 0 22px var(--g)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .node .lab{position:absolute;top:calc(50% - 6px);left:50%;transform:translate(-50%,-50%);background:#fff3d6;color:#4b2e0a;border-radius:12px;padding:3px 10px;font-weight:800;line-height:1.15;box-shadow:0 3px 0 #0003;white-space:nowrap}
 .node .lab small{display:block;font-size:13px;font-weight:700;opacity:.8}
-.node .st{display:flex;gap:2px;margin-top:6px}.node .st svg{width:18px;height:18px;filter:drop-shadow(0 2px 2px #0006)}
+.node .st{display:flex;gap:2px;margin-top:6px;color:#4b2e0a}.node .st svg{width:16px;height:16px}
 .node:not(.first) .lab{font-size:15px}
 .node:active .ball{animation-duration:2s}
 .node .flag{position:absolute;top:-16px;right:18px;width:22px;height:30px}
@@ -120,15 +121,13 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
 .chars button{background:var(--panel);border:4px solid var(--glass);border-radius:24px;padding:14px 6px;font-size:18px;font-weight:700;box-shadow:0 6px 0 #16206b}
 .chars button span{display:block;width:84px;height:84px;margin:0 auto 4px}
 .chars button:active{transform:translateY(4px);box-shadow:0 2px 0 #16206b}
-#hud{padding:10px 10px 4px;display:flex;gap:8px;align-items:stretch}
-#quitgame{background:#ffffff1c;border:2px solid #ffffff44;border-radius:14px;padding:6px 10px;font-size:14px;font-weight:700;flex:none;display:flex;align-items:center;justify-content:center}
-#quitgame:active{transform:scale(.95)}
-#hud .tip{flex:1;font-size:clamp(12px,3.3vw,16px);line-height:1.3;background:rgba(255,255,255,.1);border-radius:14px;padding:7px 10px;display:flex;align-items:center}
+#hud{padding:10px 14px 4px;display:flex;gap:10px;align-items:flex-start}
+#hud .tip{flex:1;font-size:clamp(13px,3.6vw,18px);line-height:1.35;white-space:nowrap;background:rgba(255,255,255,.1);border-radius:14px;padding:8px 12px}
 .bump{position:absolute;left:0;right:0;top:-6px;font-size:34px;font-weight:700;pointer-events:none;animation:bumpup 1s forwards;text-shadow:0 0 8px #fff,0 0 3px #fff}
 .bump.up{color:#0c8a3f}.bump.down{color:#d11f2a}
 @keyframes bumpup{from{transform:translateY(0);opacity:1}to{transform:translateY(-40px);opacity:0}}
-#score{position:relative;background:var(--gold);color:#3a2a00;font-weight:700;border-radius:14px;padding:6px 10px;text-align:center;font-size:13px;min-width:56px;display:flex;flex-direction:column;justify-content:center}
-#score b{display:block;font-size:24px;line-height:1}
+#score{position:relative;background:var(--gold);color:#3a2a00;font-weight:700;border-radius:14px;padding:6px 12px;text-align:center;font-size:14px;min-width:62px}
+#score b{display:block;font-size:26px;line-height:1}
 #arena{flex:1;position:relative;min-height:190px;margin:0 8px;border-radius:20px;background:#060822;overflow:hidden}
 #space{position:absolute;inset:0;width:100%;height:100%;z-index:0}
 .tw{animation:tw 2.4s ease-in-out infinite alternate}
@@ -167,8 +166,9 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
 #card{margin:8px;padding:10px 12px 12px;background:var(--panel);border:4px solid var(--glass);border-radius:24px;text-align:center}
 #wordrow{display:flex;align-items:center;justify-content:center;gap:14px}
 #emoji{width:clamp(56px,16vw,84px);height:clamp(56px,16vw,84px);flex:none}
-#emoji svg,.big svg{display:block;width:100%;height:100%}
+#emoji svg,.big svg,#manual svg{display:block;width:100%;height:100%}
 .big svg{width:60%;height:60%;margin:auto}
+#manual svg{width:20px;height:20px;display:inline-block;vertical-align:-4px;margin-right:6px}
 #word{font-size:clamp(76px,24vw,130px);font-weight:700;line-height:1.15;color:var(--gold);text-shadow:0 4px 0 #16206b}
 #timer{height:10px;border-radius:6px;background:#0005;overflow:hidden;margin:4px 0 8px}
 #timer div{height:100%;width:100%;background:var(--ok)}
@@ -179,17 +179,21 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
 .big:disabled{opacity:.4;cursor:default}
 .big.sm{width:56px;height:56px;font-size:26px;background:var(--bg2);box-shadow:0 4px 0 #16206b}
 @keyframes pulse{50%{transform:scale(1.1);box-shadow:0 0 0 12px #ff5a5f44}}
-#end{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px;background:#0b114af5;z-index:10;text-align:center;padding:18px 12px;overflow-y:auto}
-#end.on{display:flex}
+#manual{display:none}
+#manual button{padding:10px 18px;border-radius:14px;font-size:16px;font-weight:700;background:var(--ok);color:#073}
+#manual button+button{background:var(--bad);color:#fff}
+#end{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:#0b114acc;z-index:10;text-align:center;padding:20px}
 .stars5{display:flex;gap:6px;justify-content:center}.stars5 span{width:40px;height:40px;color:#ffffff33}.stars5 span.on{color:var(--gold)}.stars5 svg{width:100%;height:100%}
 #endsub .pct{font-size:44px;line-height:1.1}#endsub .sm{font-size:14px;color:#fff;opacity:.85;font-weight:400}
-.dash{width:min(420px,92vw);text-align:left}.dash h3{margin:10px 0 6px;font-size:16px;text-align:left}#end .btns{flex:none;padding-bottom:20px}.dash .list{justify-content:flex-start}
+.dash{width:min(420px,92vw);text-align:left;max-height:46vh;overflow:auto}.dash h3{margin:10px 0 6px;font-size:16px;text-align:left}#end .btns{flex:none;padding-bottom:20px}.dash .list{justify-content:flex-start}
 .dash .cnt{display:flex;gap:10px}.dash .cnt div{flex:1;text-align:center;border-radius:14px;padding:6px;background:#ffffff18}.dash .cnt b{display:block;font-size:30px}
 .dash .okc b{color:var(--ok)}.dash .noc b{color:var(--bad)}.dash .chip.g{background:#1d6b45}
 .dash .rows{display:flex;flex-direction:column;gap:6px}.dash .row{display:flex;align-items:center;gap:8px}.dash .row b{width:44px;font-size:20px}.dash .row span{width:46px;text-align:right}
 .dash .bar{flex:1;height:12px;border-radius:8px;background:#ffffff22;overflow:hidden}.dash .bar i{display:block;height:100%}
+#end.on{display:flex}#end{background:#0b114af5!important;overflow-y:auto!important;justify-content:flex-start!important;padding:18px 12px!important;gap:8px!important}#end h2{font-size:clamp(26px,7vw,36px)!important}.dash{max-height:none!important;overflow:visible!important}
+#end{overflow:auto}
 #endsub{font-size:22px;font-weight:700;color:var(--gold)}
-#missed{width:min(420px,100%);flex:none;display:flex;flex-direction:column;gap:8px}
+#missed{width:min(420px,100%);max-height:none;overflow:visible;flex:none;display:flex;flex-direction:column;gap:8px}
 #missed h3{margin:0;font-size:16px;font-weight:600;opacity:.9}
 #missed .list{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .chip{display:flex;align-items:center;gap:8px;background:var(--panel);border:3px solid var(--glass);border-radius:16px;padding:4px 6px 4px 14px}
@@ -198,7 +202,7 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
 .chip button{width:44px;height:44px;border-radius:50%;background:var(--bg2);box-shadow:0 3px 0 #16206b;display:grid;place-items:center}
 .chip button svg{width:24px;height:24px}
 #fxa{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
-#end h2{margin:0;font-size:clamp(26px,7vw,36px)}
+#end h2{margin:0;font-size:clamp(34px,10vw,56px)}
 #end .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 #end .btns button{background:var(--gold);color:#3a2a00;font-weight:700;font-size:18px;padding:12px 20px;border-radius:16px}
 #fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9}
@@ -246,8 +250,7 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
 
 <section id="game" class="screen">
   <div id="hud">
-    <button id="quitgame" type="button" aria-label="ออกจากด่าน">✕ ออก</button>
-    <div class="tip">เสียงของคุณช่วยกำจัดมอนสเตอร์ได้<br>พูดออกเสียงตามคำบนหน้าจอเลย!</div>
+    <div class="tip">เสียงของคุณสามารถช่วยกำจัด<br>มอนสเตอร์ได้ ให้พูดออกเสียง<br>ตามคำที่แสดงบนหน้าจอ</div>
     <div id="score">คะแนน<b>0</b></div>
   </div>
   <div id="arena">
@@ -275,7 +278,7 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
       <g fill="#2a294e" opacity=".75"><ellipse cx="62" cy="176" rx="24" ry="5"/><ellipse cx="200" cy="186" rx="30" ry="5.5"/><ellipse cx="338" cy="174" rx="22" ry="4.5"/><ellipse cx="130" cy="164" rx="10" ry="2.6"/><ellipse cx="274" cy="162" rx="12" ry="3"/></g>
     </svg>
     <canvas id="fxa"></canvas>
-    <div id="dbg"></div>
+    
     <div class="fighter" id="me"><div class="hp"></div><div class="tank"><span class="who"></span><span class="body"></span></div></div>
     <div class="fighter" id="mon"><div class="hp"></div><div class="tank"><span class="who"></span><span class="body"></span></div></div>
   </div>
@@ -297,13 +300,12 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
 
 <script>
 const $=s=>document.querySelector(s);
-// ดาวบนฉากอวกาศ
+// ดาวบนฉากอวกาศ (สุ่มแบบคงที่ ทุกครั้งที่เปิดเหมือนเดิม)
 (function(){let s=7;const r=()=>(s=(s*16807)%2147483647)/2147483647;let h="";
   for(let i=0;i<70;i++){const x=(90+r()*220).toFixed(1),y=(r()*142).toFixed(1),rad=(.4+r()*1.1).toFixed(2),o=(.4+r()*.6).toFixed(2);
     h+=`<circle cx="${x}" cy="${y}" r="${rad}" fill="#fff" opacity="${o}"${i%7===0?' class="tw"':''}/>`}
   $("#stars").innerHTML=h})();
-
-// ตัวการ์ตูนวาดด้วย SVG
+// ตัวการ์ตูนวาดด้วย SVG (หน้าตรง ใช้ได้ทั้งฝั่งเราและฝั่งศัตรู)
 const S='stroke-linecap="round" stroke-linejoin="round"';
 const EYES=(y=50)=>`<circle cx="36" cy="${y}" r="6.5" fill="#fff" stroke="#222" stroke-width="1.5"/><circle cx="64" cy="${y}" r="6.5" fill="#fff" stroke="#222" stroke-width="1.5"/><circle cx="37.5" cy="${y+1}" r="3.6" fill="#222"/><circle cx="62.5" cy="${y+1}" r="3.6" fill="#222"/><circle cx="38.8" cy="${y-1}" r="1.2" fill="#fff"/><circle cx="63.8" cy="${y-1}" r="1.2" fill="#fff"/>`;
 const SMILE='<path d="M42 77q8 6 16 0" stroke="#3b1a00" stroke-width="2.5" fill="none" '+S+'/>';
@@ -319,11 +321,11 @@ cheer:`<svg viewBox="0 0 100 56"><path d="M22 56L10 14M78 56L90 14" stroke="#fff
 };
 const EYEY={tiger:50,giraffe:46,zebra:50,elephant:38};
 const BROWS=k=>{const y=EYEY[k];return `<svg class="brows" viewBox="0 0 100 100"><path d="M23 ${y-14}L45 ${y-6}M77 ${y-14}L55 ${y-6}" stroke="#1a1208" stroke-width="6" fill="none" ${S}/></svg>`};
+// รถถังหันขวา (ฝั่งศัตรูจะพลิกด้วย CSS) a=ตัวถัง b=ป้อมปืน c=หนามเกราะ
 const TANK=(a,b,c)=>`<svg viewBox="0 0 160 100"><g class="barrel"><rect x="96" y="34" width="56" height="9" rx="2" fill="#2d3320" stroke="#111" stroke-width="2"/><rect x="147" y="29" width="12" height="19" rx="3" fill="#3a4128" stroke="#111" stroke-width="2"/></g><path d="M14 68L30 52H132L148 68Z" fill="${a}" stroke="#111" stroke-width="3" ${S}/><path d="M30 52L34 40L38 52Z M20 56L24 44L28 56Z" fill="${c}" stroke="#111" stroke-width="2" ${S}/><rect x="101" y="55" width="32" height="9" rx="2" fill="#150808"/><path d="M102 56L105 63L108 56L111 63L114 56L117 63L120 56L123 63L126 56L129 63L132 56Z" fill="#fff"/><path d="M40 54L44 34Q48 22 64 22H96Q112 24 114 38L118 54Z" fill="${b}" stroke="#111" stroke-width="3" ${S}/><ellipse cx="78" cy="24" rx="24" ry="5" fill="#1d2314" stroke="#111" stroke-width="2"/><rect x="8" y="64" width="144" height="28" rx="14" fill="#262a1c" stroke="#111" stroke-width="3"/><path d="M22 67H138M22 89H138" stroke="#59603f" stroke-width="2" stroke-dasharray="4 4"/><g fill="#4b5238" stroke="#111" stroke-width="2"><circle cx="26" cy="78" r="8"/><circle cx="52" cy="78" r="8"/><circle cx="78" cy="78" r="8"/><circle cx="104" cy="78" r="8"/><circle cx="130" cy="78" r="8"/></g><g fill="#111"><circle cx="26" cy="78" r="3"/><circle cx="52" cy="78" r="3"/><circle cx="78" cy="78" r="3"/><circle cx="104" cy="78" r="3"/><circle cx="130" cy="78" r="3"/></g></svg>`;
 const TANK_ME=TANK("#5c7a2e","#6b8c36","#d6dcae"),TANK_EN=TANK("#7a1f4a","#962a5e","#ffd23f");
 const CHARS=[["tiger","เสือโคร่ง"],["giraffe","ยีราฟ"],["zebra","ม้าลาย"],["elephant","ช้าง"]];
-
-// คำศัพท์และระดับความยาก
+// คำทั้งหมด 27 คำ และระดับความยาก (ง่าย 5 คำ / ปานกลาง 10 คำ / ยาก สุ่ม 20 คำจาก 27 คำ)
 const ALL=["กา","ขา","คา","งา","จา","ฉา","ชา","ซา","ดา","ตา","ถา","ทา","นา","ปา","ผา","ฝา","พา","ฟา","มา","ยา","รา","ลา","วา","สา","หา","อา","ฮา"];
 const LEVELS={
   easy:{n:"ง่าย",d:"5 คำ",stars:1,c:"#2fbf71",pass:0.8},
@@ -336,10 +338,12 @@ const STAGES={
   ee:{vow:"อี",title:"สระอี",all:ALL_EE,easy:["สี","มี","ดี","ตี","ปี"],mid:["สี","มี","ดี","ตี","ปี","ผี","ชี","บี","ที","ซี"]}
 };
 let stage="aa";
+// คำที่มีรูปประกอบ (คำอื่นไม่มีความหมายที่วาดง่าย จึงแสดงเฉพาะตัวอักษร)
 const PICKEE={"สี":"palette","มี":"hold","ดี":"thumb","ตี":"drum","ปี":"cake","ผี":"ghost","ชี":"nun","ที":"L_T","บี":"L_B","อี":"L_E","ซี":"L_C","จี":"L_G","พี":"L_P","วี":"L_V"};
 const PICKEY={"กา":"crow","ตา":"eye","ยา":"pill","ปา":"dart","ขา":"leg","นา":"field","มา":"come","หา":"search","ชา":"tea","ผา":"cliff","งา":"tusk","ลา":"donkey","ฝา":"lid","ทา":"brush","ฮา":"laugh"};
 let results=[],bestAcc=0;let level="easy",pool=[],lastWord=null,priming=false;
 const buildPool=()=>{const S=STAGES[stage];const cw=customWords(stage,level);const ws=cw?cw.slice():level==="hard"?shuffle(S.all).slice(0,20):S[level].slice();const pk=stage==="aa"?PICKEY:PICKEE;return ws.map(w=>[w,pk[w]||null])};
+// สลับลำดับใหม่ทุกครั้งที่เล่น และไม่ให้คำสุดท้ายรอบก่อนซ้ำเป็นคำแรกของรอบใหม่
 const refill=()=>{queue=shuffle(pool);const n=queue.length;if(n>1&&queue[n-1][0]===lastWord){const t=queue[0];queue[0]=queue[n-1];queue[n-1]=t}};
 const PIC={
 tusk:`<svg viewBox="0 0 100 100"><path d="M34 8Q14 56 52 88Q78 100 92 82Q58 80 50 52Q46 28 58 8Z" fill="#fff6dc" stroke="#a8864a" stroke-width="4" ${S}/><path d="M42 14Q30 52 56 76" stroke="#fff" stroke-width="4" fill="none" opacity=".8" ${S}/></svg>`,
@@ -351,45 +355,36 @@ crow:`<svg viewBox="0 0 100 100"><path d="M40 78v14M58 78v14M33 92h13M52 92h13" 
 eye:`<svg viewBox="0 0 100 100"><path d="M5 52Q50 8 95 52Q50 94 5 52Z" fill="#fff" stroke="#2b3a96" stroke-width="4" ${S}/><circle cx="50" cy="51" r="21" fill="#4a90e2" stroke="#2b3a96" stroke-width="3"/><circle cx="50" cy="51" r="9.5" fill="#111"/><circle cx="57" cy="43" r="4.5" fill="#fff"/><path d="M20 30l-7-10M50 17V4M80 30l7-10" stroke="#2b3a96" stroke-width="4" ${S}/></svg>`,
 pill:`<svg viewBox="0 0 100 100"><g transform="rotate(-35 50 50)"><path d="M50 30H28A20 20 0 0 0 28 70H50Z" fill="#ff5a5f"/><path d="M50 30H72A20 20 0 0 1 72 70H50Z" fill="#fff"/><rect x="8" y="30" width="84" height="40" rx="20" fill="none" stroke="#2b3a96" stroke-width="4"/><path d="M50 30V70" stroke="#2b3a96" stroke-width="4"/><path d="M20 40q4-4 10-4" stroke="#fff" stroke-width="4" fill="none" ${S}/></g></svg>`,
 dart:`<svg viewBox="0 0 100 100"><circle cx="46" cy="56" r="38" fill="#ff5a5f" stroke="#2b3a96" stroke-width="3"/><circle cx="46" cy="56" r="28" fill="#fff"/><circle cx="46" cy="56" r="18" fill="#ff5a5f"/><circle cx="46" cy="56" r="8" fill="#fff"/><path d="M46 56L88 14" stroke="#7a4a1a" stroke-width="5" ${S}/><path d="M80 22L96 6M80 22L94 24M80 22L78 8" stroke="#3ddc84" stroke-width="5" ${S}/></svg>`,
-leg:`<svg viewBox="0 0 100 100"><rect x="36" y="4" width="26" height="70" rx="12" fill="#ffd1a0" stroke="#a8641a" stroke-width="4"/><rect x="34" y="58" width="30" height="14" fill="#fff" stroke="#2b3a96" stroke-width="3"/><path d="M33 72H64V82Q90 82 92 94H31Q29 82 33 72Z" fill="#e0463c" stroke="#7a1f1a" stroke-width="4" ${S}/><path d="M33 94H92" stroke="#fff" stroke-width="3"/></svg>`,
+leg:`<svg viewBox="0 0 100 100"><rect x="36" y="4" width="26" height="70" rx="12" fill="#ffd1a0" stroke="#a8641a" stroke-width="4"/><path d="M36 22h26" stroke="#ffe8cc" stroke-width="0"/><rect x="34" y="58" width="30" height="14" fill="#fff" stroke="#2b3a96" stroke-width="3"/><path d="M33 72H64V82Q90 82 92 94H31Q29 82 33 72Z" fill="#e0463c" stroke="#7a1f1a" stroke-width="4" ${S}/><path d="M33 94H92" stroke="#fff" stroke-width="3"/></svg>`,
 field:`<svg viewBox="0 0 100 100"><rect x="4" y="4" width="92" height="92" rx="14" fill="#bfe8ff"/><circle cx="74" cy="26" r="12" fill="#ffd23f"/><path d="M4 54Q50 42 96 54V82A14 14 0 0 1 82 96H18A14 14 0 0 1 4 82Z" fill="#9be05a"/><path d="M4 72Q50 60 96 72" stroke="#5fae2e" stroke-width="4" fill="none"/><g stroke="#2f7a1e" stroke-width="3.5" ${S}><path d="M22 86V68M22 76l-6-6M22 76l6-6M50 88V70M50 78l-6-6M50 78l6-6M78 86V68M78 76l-6-6M78 76l6-6"/></g></svg>`,
 come:`<svg viewBox="0 0 100 100"><path d="M26 98V70Q26 58 50 58Q74 58 74 70V98Z" fill="#3b82f6" stroke="#1d4ed8" stroke-width="3"/><path d="M74 66L92 38" stroke="#ffd1a0" stroke-width="9" ${S}/><circle cx="93" cy="34" r="8" fill="#ffd1a0" stroke="#a8641a" stroke-width="2"/><path d="M26 68L12 86" stroke="#ffd1a0" stroke-width="9" ${S}/><circle cx="50" cy="34" r="22" fill="#ffd1a0" stroke="#a8641a" stroke-width="3"/><path d="M28 32Q30 10 50 10Q70 10 72 32Q62 20 50 22Q38 20 28 32Z" fill="#3a2410"/><circle cx="42" cy="36" r="3.2" fill="#222"/><circle cx="58" cy="36" r="3.2" fill="#222"/><path d="M42 45q8 7 16 0" stroke="#a8341a" stroke-width="3" fill="none" ${S}/></svg>`,
 search:`<svg viewBox="0 0 100 100"><path d="M64 64L90 90" stroke="#7a4a1a" stroke-width="12" ${S}/><circle cx="42" cy="42" r="30" fill="#d6f3ff" stroke="#2b3a96" stroke-width="7"/><path d="M26 36Q30 24 42 21" stroke="#fff" stroke-width="5" fill="none" ${S}/></svg>`,
 tea:`<svg viewBox="0 0 100 100"><path d="M34 26q-8-8 0-16M50 26q-8-8 0-16M66 26q-8-8 0-16" stroke="#9fb0ff" stroke-width="4" fill="none" ${S}/><path d="M72 46h8a12 12 0 0 1 0 24h-10" fill="none" stroke="#2b3a96" stroke-width="5" ${S}/><path d="M18 38H78V62Q78 84 48 84Q18 84 18 62Z" fill="#fff" stroke="#2b3a96" stroke-width="4" ${S}/><path d="M20 44H76" stroke="#c9742a" stroke-width="8"/><ellipse cx="48" cy="92" rx="38" ry="6" fill="#9fb0ff" stroke="#2b3a96" stroke-width="3"/><circle cx="36" cy="64" r="3" fill="#ff5a5f"/><circle cx="58" cy="64" r="3" fill="#ff5a5f"/></svg>`,
 cliff:`<svg viewBox="0 0 100 100"><rect x="4" y="4" width="92" height="92" rx="14" fill="#bfe8ff"/><circle cx="22" cy="24" r="10" fill="#ffd23f"/><path d="M4 88L38 28L56 52L68 36L96 88Z" fill="#8c8fa8" stroke="#464a6e" stroke-width="3" ${S}/><path d="M26 48L38 28L50 44L42 42L36 50Z" fill="#fff"/><path d="M60 46L68 36L78 52L70 48Z" fill="#fff"/><path d="M4 88H96V82A14 14 0 0 1 82 96H18A14 14 0 0 1 4 82Z" fill="#6fcf4a"/></svg>`
 };
-let MAXHP=10; const TIME=10000;
+let MAXHP=10; const TIME=10000, PASS=0.5; // เวลาพูด 10 วินาที / ผ่านเมื่อความมั่นใจของระบบ >= 40%
+// confidence = 0 หรือไม่มีค่า แปลว่าเบราว์เซอร์ไม่รายงาน (เช่นผลระหว่างฟังบน Chrome) ให้ถือว่าผ่านเกณฑ์
+const confOK=c=>!c||c>=LEVELS[level].pass;
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 let ch=0,php,ehp,score,queue=[],cur,busy=true,playing=false,rec=null,tmo=null,micDenied=false,fxOn=false,fxArena=false,armed=false,hintId=0,missed={},timerOn=false,extended=false,gotSpeech=false,recLive=false,micReady=false;
-
-// เลือกเสียงไทยที่ฟังเป็นธรรมชาติที่สุด
+// เลือกเสียงไทยที่ฟังเป็นธรรมชาติที่สุดเท่าที่เครื่องมี
 function thaiVoice(){try{const vs=speechSynthesis.getVoices().filter(v=>/^th/i.test(v.lang));if(!vs.length)return null;for(const re of [/premium/i,/enhanced/i,/natural|neural/i,/narisa|kanya|google/i]){const f=vs.find(v=>re.test(v.name));if(f)return f}return vs[0]}catch(e){return null}}
 try{speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>{}}catch(e){}
-
-// ตารางปรับการสะกดเสียงพยัญชนะสำหรับ TTS ป้องกันการอ่านเพี้ยนเป็นเสียงเอก (เช่น นอ -> หน่อ)
-const PHONETIC = {
-  "ก":"กอ","ข":"ขอ","ฃ":"ขอ","ค":"คอ","ฅ":"คอ","ฆ":"คอ","ง":"งออ","จ":"จอ","ฉ":"ฉอ","ช":"ชอ","ซ":"ซอ","ฌ":"ชอ","ญ":"ยอ",
-  "ฎ":"ดอ","ฏ":"ตอ","ฐ":"ถอ","ฑ":"ทอ","ฒ":"ทอ","ณ":"นออ","ด":"ดอ","ต":"ตอ","ถ":"ถอ","ท":"ทอ","ธ":"ทอ","น":"นออ",
-  "บ":"บอ","ป":"ปอ","ผ":"ผอ","ฝ":"ฝอ","พ":"พอ","ฟ":"ฟอ","ภ":"พอ","ม":"มออ","ย":"ยออ","ร":"รออ","ล":"ลออ","ว":"วออ",
-  "ศ":"สอ","ษ":"สอ","ส":"สอ","ห":"หอ","ฬ":"ลออ","อ":"ออ","ฮ":"ฮอ"
-};
-
-// อ่านโจทย์ออกเสียง เช่น "กอ" แล้ว "อา"
+// อ่านโจทย์ออกเสียง เช่น "กอ" แล้ว "อา" (เวลายังไม่เดินระหว่างนี้)
 function speakSeq(parts,done,pre){
   const id=++hintId;let finished=false;
   const fin=()=>{if(finished||id!==hintId)return;finished=true;done()};
   try{
     if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();
-    speechSynthesis.resume();
     let i=0,started=false;
     const noVoice=()=>{if(started||finished||id!==hintId)return;$("#fb").textContent="ไม่ได้ยินเสียง? เช็กเสียงเครื่อง/โหมดเงียบ (ดูคำอ่านบนจอได้)";setTimeout(fin,2500)};
     const next=()=>{
       if(id!==hintId||finished)return;
       if(i>=parts.length){fin();return}
       const first=i===0;
-      const u=new SpeechSynthesisUtterance(parts[i++]);u.lang="th-TH";u.rate=.92;u.pitch=1.0;const v=thaiVoice();if(v)u.voice=v;
+      const u=new SpeechSynthesisUtterance(parts[i++]);u.lang="th-TH";u.rate=.92;u.pitch=1.12;const v=thaiVoice();if(v)u.voice=v;
       if(first){u.onstart=()=>{started=true};setTimeout(noVoice,2000)}
-      if(pre&&i===parts.length){const o=u.onstart;u.onstart=()=>{o&&o();if(id===hintId&&!finished)pre()}}
+      if(pre&&i===parts.length){const o=u.onstart;u.onstart=()=>{o&&o();if(id===hintId&&!finished)pre()}} // เริ่มเปิดไมค์ตอนเริ่มอ่านเสียงสุดท้าย เพื่อให้ไมค์พร้อมพอดีตอนอ่านจบ
       u.onend=()=>{if(i>=parts.length)next();else setTimeout(next,160)};u.onerror=()=>setTimeout(next,80);
       speechSynthesis.speak(u);
     };
@@ -410,7 +405,7 @@ ghost:`<svg viewBox="0 0 100 100"><path d="M18 90V46q0-34 32-34t32 34v44l-11-9-1
 nun:`<svg viewBox="0 0 100 100"><path d="M50 8C26 8 18 28 18 54v38h64V54C82 28 74 8 50 8Z" fill="#2b2b3a" stroke="#111" stroke-width="4"/><ellipse cx="50" cy="46" rx="22" ry="26" fill="#ffe2c2" stroke="#a8743a" stroke-width="3"/><path d="M28 34q22-20 44 0v-6q-22-16-44 0Z" fill="#fff" stroke="#8a8fb8" stroke-width="2"/><circle cx="41" cy="48" r="3.4" fill="#222"/><circle cx="59" cy="48" r="3.4" fill="#222"/><path d="M42 60q8 7 16 0" stroke="#a83a3a" stroke-width="3" fill="none" ${S}/></svg>`
 });
 
-// ===== โหมดผู้ปกครอง =====
+// ===== โหมดผู้ปกครอง: ให้แม่เลือกคำเอง =====
 const C44=["ก","ข","ฃ","ค","ฅ","ฆ","ง","จ","ฉ","ช","ซ","ฌ","ญ","ฎ","ฏ","ฐ","ฑ","ฒ","ณ","ด","ต","ถ","ท","ธ","น","บ","ป","ผ","ฝ","พ","ฟ","ภ","ม","ย","ร","ล","ว","ศ","ษ","ส","ห","ฬ","อ","ฮ"];
 const QUOTA={easy:5,mid:10,hard:20};
 const VOWCH={aa:"า",ee:"ี"};
@@ -420,12 +415,7 @@ const saveCustom=o=>{try{localStorage.setItem("mvw_custom",JSON.stringify(o));re
 const customWords=(st,lv)=>{const a=((loadCustom()[st]||{})[lv]);return Array.isArray(a)&&a.length===QUOTA[lv]?a:null};
 const defaultWords=(st,lv)=>lv==="hard"?null:STAGES[st][lv];
 let draft=null,ptab="easy";
-
-// ระบบบันทึกดาวของแต่ละด่าน
-const getStars=()=>{try{return JSON.parse(localStorage.getItem("mvw_stars")||"{}")}catch(e){return {}}};
-const saveStars=(st,count)=>{const s=getStars();if((s[st]||0)<count){s[st]=count;try{localStorage.setItem("mvw_stars",JSON.stringify(s))}catch(e){}}};
-
-// โจทย์เลขกันเด็กกดมั่ว
+// โจทย์เลข 2 หลัก (บวก ลบ คูณ หาร) ให้จิ้มตัวเลขคำตอบ
 let gAns="",gSol=0;
 function newGate(){
   const r=(a,b)=>a+Math.floor(Math.random()*(b-a+1)),t=r(0,3);let q;
@@ -481,10 +471,7 @@ const MASCOT={
   ee:GLYPH("M16 70V62Q16 44 38 44H62Q84 44 84 62V70Q84 88 62 88H38Q16 88 16 70ZM76 46V6","#b57cff","#e4ccff","#7a3fd0",VFACE(50,46,1),28)
 };
 const showMascot=()=>{$("#mascot").innerHTML='<div class="pad2"></div>'+MASCOT[stage]};
-
-// ใช้ PHONETIC Map เพื่อให้ TTS อ่านเสียงพยัญชนะชัด ไม่เพี้ยนเป็นเสียงเอก
-const hintParts=w=>[PHONETIC[w[0][0]]||(w[0][0]+"อ"),STAGES[stage].vow];
-
+const hintParts=w=>[w[0][0]+"อ",STAGES[stage].vow];
 function preOpen(){
   if(!playing||busy||!SR||micDenied)return;
   gotSpeech=false;listen(false);
@@ -494,17 +481,20 @@ function startTimer(){
   armed=true;timerOn=true;extended=false;
   const bar=$("#timer div");bar.style.transition="none";bar.style.width="100%";bar.offsetWidth;
   clearTimeout(tmo);
-  if(testMode)return;
+  if(testMode)return; // โหมดทดสอบ: ไม่จับเวลา พูดได้นานเท่าที่ต้องการ
   bar.style.transition=`width ${TIME}ms linear`;bar.style.width="0%";
   tmo=setTimeout(onTimeout,TIME);
 }
+// หมดเวลาแต่ไมค์กำลังได้ยินเสียงอยู่ → ต่อเวลาให้ครั้งเดียว รอให้ระบบประมวลผลเสียงที่เพิ่งพูดเสร็จ
 function onTimeout(){
   if(gotSpeech&&!extended){extended=true;tmo=setTimeout(onTimeout,1800);return}
   judge(false,"",true);
 }
+// โหมดทดสอบ: แสดงสิ่งที่ระบบได้ยินแบบสด
 const testMode=false;
 const dbgLines=[];
 function dbg(m){if(!testMode)return;dbgLines.push(m);while(dbgLines.length>7)dbgLines.shift();$("#dbg").innerHTML=dbgLines.map(x=>`<div>${x.replace(/</g,"&lt;")}</div>`).join("")}
+// อัปเดตคะแนนทันทีที่ตัดสิน พร้อมตัวเลข +1 / −1 ลอยขึ้น (ไม่ต้องรอกระสุนยิงเสร็จ)
 function bump(d){
   const s=$("#score");s.innerHTML=`คะแนน<b>${score}</b>`;
   const p=document.createElement("div");p.className="bump "+(d>0?"up":"down");p.textContent=d>0?"+1":"−1";
@@ -517,29 +507,35 @@ function hintDone(){
   $("#fb").textContent=`พูดเลย! “${cur[0]}”`;
   armed=true;
   if(SR&&!micDenied){
+    // ไมค์เริ่มเปิดไว้แล้วตั้งแต่เสียงอ่านท้าย: ถ้าพร้อมแล้วเริ่มนับเวลาทันที ไม่งั้นรอให้ไมค์ตอบ (สำรอง 2.5 วินาที)
     if(!recLive)listen(false);
     if(micReady&&!timerOn)startTimer();
     setTimeout(()=>{if(playing&&!busy&&cur===w&&!timerOn)startTimer()},2500);
   }else startTimer();
 }
 
-const norm=s=>(s||"").replace(/[\s็-๎.,!?]/g,"").toLowerCase();
-const CMAP={"ฃ":"ข","ค":"ข","ฅ":"ข","ฆ":"ข","ฉ":"ช","ฌ":"ช","ถ":"ท","ธ":"ท","ฑ":"ท","ฒ":"ท","ผ":"พ","ภ":"พ","ฝ":"ฟ","ซ":"ส","ศ":"ส","ษ":"ส","ฎ":"ด","ฏ":"ต","ณ":"น","ฬ":"ล","ญ":"ย","ฮ":"ห"};
-const canon=s=>(s||"").toLowerCase().replace(/[็-๎.,!?]/g,"").split(/\s+/).filter(Boolean)
-  .map(w=>w.replace(/^ห(?=[ก-ฮ])/,"").replace(/[ก-ฮ]/g,c=>CMAP[c]||c)).join("");
+// ตัดวรรณยุกต์และช่องว่างก่อนเทียบเสียง
+const norm=s=>(s||"").replace(/[\s\u0e47-\u0e4e.,!?]/g,"").toLowerCase();
+// \u0e40\u0e17\u0e35\u0e22\u0e1a\u0e41\u0e1a\u0e1a\u0e22\u0e37\u0e14\u0e2b\u0e22\u0e38\u0e48\u0e19: \u0e15\u0e31\u0e14\u0e27\u0e23\u0e23\u0e13\u0e22\u0e38\u0e01\u0e15\u0e4c \u0e15\u0e31\u0e14 \u0e2b \u0e19\u0e33 (\u0e2b\u0e21\u0e32=\u0e21\u0e32) \u0e41\u0e25\u0e30\u0e23\u0e27\u0e21\u0e1e\u0e22\u0e31\u0e0d\u0e0a\u0e19\u0e30\u0e17\u0e35\u0e48\u0e2d\u0e2d\u0e01\u0e40\u0e2a\u0e35\u0e22\u0e07\u0e40\u0e2b\u0e21\u0e37\u0e2d\u0e19\u0e01\u0e31\u0e19 (\u0e04=\u0e02, \u0e1c=\u0e1e, \u0e17=\u0e16 \u0e2f\u0e25\u0e2f)
+const CMAP={"\u0e03":"\u0e02","\u0e04":"\u0e02","\u0e05":"\u0e02","\u0e06":"\u0e02","\u0e09":"\u0e0a","\u0e0c":"\u0e0a","\u0e16":"\u0e17","\u0e18":"\u0e17","\u0e11":"\u0e17","\u0e12":"\u0e17","\u0e1c":"\u0e1e","\u0e20":"\u0e1e","\u0e1d":"\u0e1f","\u0e0b":"\u0e2a","\u0e28":"\u0e2a","\u0e29":"\u0e2a","\u0e0e":"\u0e14","\u0e0f":"\u0e15","\u0e13":"\u0e19","\u0e2c":"\u0e25","\u0e0d":"\u0e22","\u0e2e":"\u0e2b"};
+const canon=s=>(s||"").toLowerCase().replace(/[\u0e47-\u0e4e.,!?]/g,"").split(/\s+/).filter(Boolean)
+  .map(w=>w.replace(/^\u0e2b(?=[\u0e01-\u0e2e])/,"").replace(/[\u0e01-\u0e2e]/g,c=>CMAP[c]||c)).join("");
 const matches=(heard,target)=>canon(heard).includes(canon(target));
+// ความแม่นยำ 0-100: ผสมความเหมือนของเสียงที่ระบบถอดได้กับคำเป้าหมาย (ตัวอักษรที่ต่างกันยิ่งมาก คะแนนยิ่งลด) และความมั่นใจของระบบ ถ้าเครื่องส่งมา
 const lev=(a,b)=>{const m=a.length,n=b.length,d=Array.from({length:m+1},(_,i)=>[i,...Array(n).fill(0)]);for(let j=1;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n]};
 const accOf=(heard,conf,target)=>{const h=canon(heard),t=canon(target);if(!h||!t)return 0;
   const sim=h.includes(t)?1:Math.max(0,1-lev(h,t)/Math.max(h.length,t.length));
   return Math.round(100*(conf>0?(sim*.6+Math.min(1,conf)*.4):sim))};
+// \u0e04\u0e33\u0e17\u0e35\u0e48\u0e44\u0e21\u0e04\u0e4c\u0e44\u0e14\u0e49\u0e22\u0e34\u0e19\u0e40\u0e1b\u0e47\u0e19\u0e41\u0e04\u0e48\u0e40\u0e2a\u0e35\u0e22\u0e07\u0e2d\u0e48\u0e32\u0e19\u0e42\u0e08\u0e17\u0e22\u0e4c\u0e02\u0e2d\u0e07\u0e23\u0e30\u0e1a\u0e1a\u0e40\u0e2d\u0e07 (\u0e40\u0e0a\u0e48\u0e19 "\u0e2d\u0e32", "\u0e02\u0e2d") \u0e44\u0e21\u0e48\u0e19\u0e31\u0e1a\u0e40\u0e1b\u0e47\u0e19\u0e04\u0e33\u0e15\u0e2d\u0e1a
 const isEcho=(heard,target)=>{const n=canon(heard),c=target[0],v=STAGES[stage].vow;
-  if(c==="อ")return n===""||n===canon("ออ")||n===canon("ออ"+v);
-  return n===""||n===canon(v)||n==="อ"||n===canon(v+v)||n===canon(c+"อ")||n===canon(c+"ออ")||n===canon(c+"อ"+v)};
+  if(c==="\u0e2d")return n===""||n===canon("\u0e2d\u0e2d")||n===canon("\u0e2d\u0e2d"+v);
+  return n===""||n===canon(v)||n==="\u0e2d"||n===canon(v+v)||n===canon(c+"\u0e2d")||n===canon(c+"\u0e2d"+v)};
 
 let actx,master;
 function ac(){try{if(!actx){actx=new (window.AudioContext||window.webkitAudioContext)();const cp=actx.createDynamicsCompressor();master=actx.createGain();master.gain.value=.5;master.connect(cp);cp.connect(actx.destination)}if(actx.state==="suspended")actx.resume();return actx}catch(e){return null}}
 function noiseBuf(c,d){const b=c.createBuffer(1,Math.floor(c.sampleRate*d),c.sampleRate),a=b.getChannelData(0);for(let i=0;i<a.length;i++)a[i]=Math.random()*2-1;return b}
 function tone(f,d,t="sine"){const c=ac();if(!c)return;try{const o=c.createOscillator(),g=c.createGain();o.type=t;o.frequency.value=f;g.gain.value=.15;o.connect(g);g.connect(master);o.start();g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.stop(c.currentTime+d)}catch(e){}}
+// เสียงปืนใหญ่ ตู้มมม: เสียงทุ้มตกลง + เสียงลมก้องในลำคอ + เสียงแตกตอนยิง
 function boom(big=1){const c=ac();if(!c)return;try{const t=c.currentTime;
   const o=c.createOscillator(),og=c.createGain();o.type="sine";o.frequency.setValueAtTime(big>.8?150:190,t);o.frequency.exponentialRampToValueAtTime(30,t+.6);og.gain.setValueAtTime(1.1*big,t);og.gain.exponentialRampToValueAtTime(.001,t+.8);o.connect(og);og.connect(master);o.start(t);o.stop(t+.85);
   const n=c.createBufferSource();n.buffer=noiseBuf(c,1.3);const f=c.createBiquadFilter();f.type="lowpass";f.frequency.setValueAtTime(2400,t);f.frequency.exponentialRampToValueAtTime(60,t+1);const ng=c.createGain();ng.gain.setValueAtTime(.9*big,t);ng.gain.exponentialRampToValueAtTime(.001,t+1.2);n.connect(f);f.connect(ng);ng.connect(master);n.start(t);n.stop(t+1.3);
@@ -557,24 +553,19 @@ $("#tohome").onclick=()=>show("home");
 $("#pickback").onclick=()=>show("home");
 $("#swap").onclick=()=>show("pick");
 $("#soonback").onclick=()=>{$("#soon").classList.remove("on");shipAt=0;placeShip(0,true)};
-
-// หน้าแรก: ด่านเป็นดาวหมุนพร้อมแสดงดาวที่สะสมได้
-const WORLDS=[["สระอา","า",1,"#ffd23f"],["สระอี","◌ี",0,"#7b5cf0"],["สระอู","◌ู",0,"#5cc85c"],["สระโอ","โ◌",0,"#ff6f7d"]];
-const STAGE_KEYS=["aa","ee","uu","oo"];
+// หน้าแรก: ด่านเป็นดาวหมุน
+const WORLDS=[["สระอา","า",1,"#ffd23f"],["สระอี","\u25ccี",0,"#7b5cf0"],["สระอู","\u25ccู",0,"#5cc85c"],["สระโอ","โ\u25cc",0,"#ff6f7d"]];
 const SHIP=k=>`<div class="ship" id="ship"><div class="in" style="position:relative"><svg class="sau" viewBox="0 0 116 70"><ellipse cx="58" cy="46" rx="56" ry="17" fill="#8d96b8" stroke="#4a5280" stroke-width="3"/><ellipse cx="58" cy="42" rx="40" ry="10" fill="#c3cae6"/><circle cx="20" cy="47" r="3.5" fill="#ffe36b"/><circle cx="38" cy="53" r="3.5" fill="#ffe36b"/><circle cx="58" cy="55" r="3.5" fill="#ffe36b"/><circle cx="78" cy="53" r="3.5" fill="#ffe36b"/><circle cx="96" cy="47" r="3.5" fill="#ffe36b"/></svg><div class="dome" id="shipdome">${ART[k]}</div></div></div>`;
 let shipAt=0,traveling=false;
 function placeShip(i,anim){const m=$("#map"),sh=$("#ship");if(!m||!sh||!m.offsetWidth)return;const r=m.getBoundingClientRect(),b=m.querySelectorAll(".ball")[i].getBoundingClientRect();
   sh.style.transition=anim?"":"none";sh.style.transform=`translate(${b.left+b.width/2-r.left-58}px,${b.top-r.top-52}px)`;if(!anim)sh.offsetWidth}
 function drawHome(){
-  const saved=getStars();
-  $("#map").innerHTML='<svg id="trail"></svg>'+SHIP(CHARS[ch][0])+WORLDS.map((w,i)=>{
-    const earned=saved[STAGE_KEYS[i]]||0;
-    const starsHTML=[1,2,3].map(n=>`<span style="color:${n<=earned?'#ffd23f':'#4b2e0a'};opacity:${n<=earned?'1':'.35'}">${STAR}</span>`).join("");
-    return `<button class="node ${i%2?"R":"L"}${w[2]?" first":""}" type="button" data-i="${i}"><span class="ball" style="background:radial-gradient(circle at 35% 30%,#fff5,transparent 40%),${w[3]};--g:${w[3]}88"></span><span class="lab"><b>${w[0]}</b><small>(${w[1]})</small></span>${i<2?`<span class="st">${starsHTML}</span>`:""}</button>`;
-  }).join("");
+  const dim=`<span style="opacity:.35">${STAR}</span>`.repeat(3);
+  shipAt=0;$("#map").innerHTML='<svg id="trail"></svg>'+SHIP(CHARS[ch][0])+WORLDS.map((w,i)=>`<button class="node ${i%2?"R":"L"}${w[2]?" first":""}" type="button" data-i="${i}"${w[2]?"":""}><span class="ball" style="background:radial-gradient(circle at 35% 30%,#fff5,transparent 40%),${w[3]};--g:${w[3]}88"></span><span class="lab"><b>${w[0]}</b><small>(${w[1]})</small></span>${w[2]?`<span class="st" style="color:#4b2e0a">${dim}</span>`:""}</button>`).join("");
   $("#swapface").innerHTML=ART[CHARS[ch][0]];
   requestAnimationFrame(()=>{drawTrail();placeShip(shipAt,false)});
 }
+// เส้นประโค้งไปมา เหมือนยานขับเป๋ไปเป๋มา
 function drawTrail(){
   const m=$("#map"),sv=$("#trail");if(!m||!sv||!m.offsetWidth)return;
   const r=m.getBoundingClientRect(),P=[...m.querySelectorAll(".ball")].map(b=>{const q=b.getBoundingClientRect();return [q.left+q.width/2-r.left,q.top+q.height/2-r.top]});
@@ -582,6 +573,7 @@ function drawTrail(){
   for(let i=0;i<P.length-1;i++){
     const [x1,y1]=P[i],[x2,y2]=P[i+1],dy=y2-y1,dx=x2-x1,w=70;
     if(!i)d+=`M${x1} ${y1}`;
+    // วนซ้าย-ขวาสลับกัน 3 ช่วงต่อด่าน
     d+=` C${x1+w*1.6} ${y1+dy*.15} ${x1+dx*.3-w} ${y1+dy*.3} ${x1+dx*.4} ${y1+dy*.42}`;
     d+=` S${x2-dx*.3+w*1.2} ${y1+dy*.72} ${x2} ${y2}`;
   }
@@ -589,14 +581,15 @@ function drawTrail(){
 }
 addEventListener("resize",()=>{drawTrail();placeShip(shipAt,false)});
 $("#map").onclick=e=>{const n=e.target.closest(".node");if(!n||traveling)return;const i=+n.dataset.i;
-  traveling=true;shipAt=i;const sh=$("#ship");sh.classList.add("fly");placeShip(i,true);
+  traveling=true;shipAt=i;const sh=$("#ship");sh.classList.add("fly");placeShip(i,true); // เดินทาง 1 วินาที
   setTimeout(()=>sh.classList.remove("fly"),1000);
-  setTimeout(()=>{traveling=false;if(i<2){stage=i?"ee":"aa";$("#level h1").textContent=STAGES[stage].title;drawLevels();showMascot();show("level")}else $("#soon").classList.add("on")},1400);
+  setTimeout(()=>{traveling=false;if(i<2){stage=i?"ee":"aa";$("#level h1").textContent=STAGES[stage].title;drawLevels();showMascot();show("level")}else $("#soon").classList.add("on")},1400); // หยุดรอ 0.4 วินาทีแล้วค่อยเข้า
 };
 (function(){let h="";for(let i=0;i<46;i++)h+=`<i style="left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${(Math.random()*2.4).toFixed(2)}s;transform:scale(${.6+Math.random()})"></i>`;$("#tw").innerHTML=h})();
 drawHome();
-
+// เปิดเสียงพูดของเบราว์เซอร์ในจังหวะที่ผู้เล่นกด (มือถือไม่ยอมให้พูดถ้าไม่ได้เริ่มจากการแตะ)
 function unlockTTS(){try{const u=new SpeechSynthesisUtterance(".");u.volume=0;u.lang="th-TH";speechSynthesis.speak(u)}catch(e){}}
+// ขอสิทธิ์ไมโครโฟนทันทีหลังเลือกตัวละคร: เปิดการฟังเสียงชั่วครู่แล้วปิด เพื่อให้หน้าต่างขออนุญาตขึ้นก่อนเริ่มเกม
 function primeMic(){
   return new Promise(res=>{
     micDenied=false;
@@ -609,18 +602,18 @@ function primeMic(){
       r.onerror=e=>{if(e.error==="not-allowed"||e.error==="service-not-allowed")micDenied=true;fin()};
       r.onend=fin;
       r.start();
-      setTimeout(()=>{try{r.abort()}catch(e){}fin()},15000);
+      setTimeout(()=>{try{r.abort()}catch(e){}fin()},15000); // กันค้าง ถ้าไม่ตอบหน้าต่างภายใน 15 วินาที ก็เริ่มเกมต่อ
     }catch(e){fin()}
   });
 }
 $("#chars").onclick=e=>{const b=e.target.closest("button");if(!b)return;
   ch=+b.dataset.i;drawHome();show("home");
 };
-$("#quitgame").onclick=()=>{stopAll();show("level")};
 $("#lvl").onclick=()=>{stopAll();$("#end").classList.remove("on");fxOn=false;show("level")};
 $("#back").onclick=()=>{stopAll();$("#end").classList.remove("on");fxOn=false;show("home")};
 $("#again").onclick=()=>{$("#end").classList.remove("on");fxOn=false;start()};
 $("#hear").onclick=()=>{if(!cur||busy)return;
+  // ฟังซ้ำ: หยุดนับเวลา อ่านใหม่ แล้วเริ่มนับเมื่ออ่านจบ
   armed=false;timerOn=false;gotSpeech=false;clearTimeout(tmo);try{rec&&rec.abort()}catch(e){}
   const bar=$("#timer div");bar.style.transition="none";bar.style.width="100%";
   $("#hear").disabled=true;$("#mic").disabled=true;$("#mic").classList.remove("ready","live");
@@ -641,12 +634,13 @@ function start(){
   MAXHP=level==="easy"?5:10;php=ehp=MAXHP;score=0;pool=buildPool();queue=[];lastWord=null;missed={};results=[];bestAcc=0;playing=true;
   document.querySelectorAll(".ghost,.cheer,.boom").forEach(n=>n.remove());
   ac();
+  
   $("#me").classList.remove("wrecked");$("#mon").classList.remove("wrecked");
   $("#me .who").innerHTML=ART[CHARS[ch][0]]+BROWS(CHARS[ch][0]);$("#me .who").style.visibility="visible";
   $("#mon .who").innerHTML=ART.monster;$("#mon .who").style.visibility="visible";
   $("#me .body").innerHTML=TANK_ME;$("#mon .body").innerHTML=TANK_EN;
   $("#mic").style.display=SR?"":"none";
-  show("game");render();nextWord();
+  show("game");render();nextWord(); // เรียกทันทีในจังหวะที่ผู้เล่นกด เพื่อให้เบราว์เซอร์ยอมเล่นเสียงพูด
 }
 function stopAll(){playing=false;armed=false;fxArena=false;fxOn=false;stopSpeech();clearTimeout(tmo);try{rec&&rec.abort()}catch(e){}rec=null;recLive=false;micReady=false;$("#mic").classList.remove("live")}
 
@@ -662,14 +656,16 @@ function nextWord(){
   speakSeq(hintParts(cur),hintDone,preOpen);
 }
 
+// ตัดเสียงอ่านโจทย์ของระบบ ("กอ" "อา") ที่ไมค์จับติดมาต้นประโยคออก
 function stripEcho(t){let n=canon(t);const c=cur[0][0],v=STAGES[stage].vow;
-  for(const p of [canon(c+"อ"),canon(c+"ออ"),canon(v)])if(p&&n.startsWith(p))n=n.slice(p.length);
+  for(const p of [canon(c+"อ"),canon(v)])if(p&&n.startsWith(p))n=n.slice(p.length);
   return n}
 function listen(manual){
   if(!SR||busy||!playing||(micDenied&&!manual))return;
   try{rec&&rec.abort()}catch(e){}
   rec=new SR();rec.lang="th-TH";rec.maxAlternatives=5;rec.interimResults=true;
   const mine=rec;recLive=true;micReady=false;const early=!armed;
+  // เริ่มนับเวลาเมื่อไมค์พร้อมฟังจริง ไม่ใช่ตอนสั่งเปิดไมค์ (เปิดไมค์บนมือถือใช้เวลาประมาณ 1 วินาที)
   const ready=()=>{if(mine!==rec)return;micReady=true;if(armed&&!busy&&!timerOn)startTimer()};
   rec.onaudiostart=ready;
   rec.onspeechstart=()=>{gotSpeech=true};
@@ -677,9 +673,10 @@ function listen(manual){
   rec.onresult=e=>{
     if(busy||mine!==rec)return;
     const R=e.results[e.results.length-1];
-    if(!armed)return;
+    if(!armed)return; // ยังอ่านโจทย์อยู่ ยังไม่ตัดสิน
     const A=[...R].map(a=>({t:early?stripEcho(a.transcript):a.transcript,c:a.confidence}));
     if(!R.isFinal){
+      // ได้ยินคำที่ตรงและมั่นใจพอแล้วระหว่างที่ยังพูดอยู่ → ผ่านทันที ไม่ต้องรอครบเวลา
       gotSpeech=true;
       dbg("กำลังฟัง: “"+A[0].t+"”"+(A[0].c?" "+Math.round(A[0].c*100)+"%":""));
       const sc=A.filter(x=>!isEcho(x.t,cur[0])).map(x=>({t:x.t,a:accOf(x.t,x.c,cur[0])})).sort((p,q)=>q.a-p.a)[0];
@@ -694,9 +691,10 @@ function listen(manual){
   rec.onerror=e=>{
     dbg("error: "+e.error);
     if(e.error!=="no-speech"&&e.error!=="aborted"){
+      // ใช้ไมค์ไม่ได้: ไม่หยุดนับเวลา แต่เปิดปุ่มให้ผู้ปกครองตัดสินแทน
       micDenied=true;
       if(!timerOn&&!busy)startTimer();
-      if(!busy)$("#fb").textContent="ใช้ไมค์ไม่ได้ กรุณาอนุญาตไมโครโฟน";
+      if(!busy)$("#fb").textContent="ใช้ไมค์ไม่ได้ ให้ผู้ปกครองกดถูก/ผิดแทน";
     }
   };
   rec.onend=()=>{
@@ -747,12 +745,10 @@ function shoot(from,to,done){
 
 function finish(win){
   playing=false;armed=false;clearTimeout(tmo);stopSpeech();
-  const loser=win?$("#mon"):$("#me");
+  const loser=win?$("#mon"):$("#me"),winner=win?$("#me"):$("#mon");
   loser.querySelector(".who").style.visibility="hidden";
   const g=document.createElement("div");g.className="ghost";g.innerHTML=ART.ghost;loser.querySelector(".tank").appendChild(g);loser.classList.add("wrecked");
-  if(win){
-    saveStars(stage,LEVELS[level].stars);
-    drawHome();
+  if(win){ // ตัวละครยิ้มกว้าง ตาหยี แก้มแดง และมีพลุยิงอยู่ฉากหลัง
     const k=CHARS[ch][0];$("#me .who").innerHTML=ART[k]+HAPPY(k);
     fxArena=true;fireworks($("#fxa"),()=>fxArena);
   }
@@ -767,6 +763,7 @@ function fb_end(win){
   if(win){tone(660,.6,"triangle");setTimeout(()=>tone(990,.6,"triangle"),200)}
   else setTimeout(sad,450);
 }
+// เสียงผิดหวัง "วา-วา-วา-วาาา" โน้ตไล่ลงพร้อมเอฟเฟกต์ wah
 function sad(){const c=ac();if(!c)return;try{
   let t=c.currentTime+.05;
   [[392,.4],[370,.4],[349,.4],[330,1]].forEach(([f,d],i)=>{
@@ -777,12 +774,13 @@ function sad(){const c=ac();if(!c)return;try{
     g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.24,t+.04);g.gain.exponentialRampToValueAtTime(.001,t+d);
     o.connect(fl);fl.connect(g);g.connect(master);o.start(t);o.stop(t+d+.05);t+=d*.92;
   })}catch(e){}}
+// หน้าตายิ้มตอนชนะ
 const FACE={tiger:{y:50,c:"#ff9a2e",m:72},giraffe:{y:46,c:"#ffd54a",m:79},zebra:{y:50,c:"#ffffff",m:80},elephant:{y:38,c:"#b7c8e6",m:null}};
 const HAPPY=k=>{const f=FACE[k];
   const eye=x=>`<circle cx="${x}" cy="${f.y}" r="8.6" fill="${f.c}"/><path d="M${x-7} ${f.y+3}Q${x} ${f.y-8} ${x+7} ${f.y+3}" stroke="#1a1208" stroke-width="3.6" fill="none" ${S}/>`;
   const mouth=f.m?`<path d="M38 ${f.m}Q50 ${f.m+17} 62 ${f.m}Z" fill="#5a1a1a" stroke="#2a0a0a" stroke-width="2" ${S}/><path d="M44 ${f.m+8}Q50 ${f.m+4} 56 ${f.m+8}Q50 ${f.m+14} 44 ${f.m+8}Z" fill="#ff7a8a"/>`:"";
   return `<svg class="brows" viewBox="0 0 100 100">${eye(36)}${eye(64)}<circle cx="21" cy="${f.y+13}" r="5.5" fill="#ff6b8a" opacity=".45"/><circle cx="79" cy="${f.y+13}" r="5.5" fill="#ff6b8a" opacity=".45"/>${mouth}</svg>`};
-
+// หน้าสรุปผล: คะแนน + คำที่พลาด พร้อมปุ่มลำโพงอ่านทั้งคำ
 const SPK='<svg viewBox="0 0 24 24" fill="#fff"><path d="M3 9v6h4l5 4V5L7 9z"/><path d="M15 8.5a5 5 0 010 7M17.5 6a8.5 8.5 0 010 12" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
 function showSummary(win){
   $("#endtitle").textContent=win?"ชนะแล้ว! เย้!":"แพ้แล้ว ลองอีกครั้งนะ";
@@ -803,11 +801,11 @@ function showSummary(win){
 $("#missed").onclick=e=>{const b=e.target.closest("button[data-w]");if(b)speakWord(b.dataset.w)};
 function speakWord(w){try{
   hintId++;if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();
-  speechSynthesis.resume();
-  const u=new SpeechSynthesisUtterance(w);u.lang="th-TH";u.rate=.9;u.pitch=1.0;const v=thaiVoice();if(v)u.voice=v;
+  const u=new SpeechSynthesisUtterance(w);u.lang="th-TH";u.rate=.9;u.pitch=1.12;const v=thaiVoice();if(v)u.voice=v;
   speechSynthesis.speak(u)}catch(e){}}
 
 // พลุ
+// พลุ: จรวดพุ่งขึ้นแล้วแตกเป็นดอก ใช้ได้ทั้งฉากหลังในสนามและหน้าสรุปผล
 function fireworks(cv,alive){
   const c=cv.getContext("2d"),dp=window.devicePixelRatio||1,r=cv.getBoundingClientRect();
   cv.width=Math.max(1,Math.round(r.width*dp));cv.height=Math.max(1,Math.round(r.height*dp));
