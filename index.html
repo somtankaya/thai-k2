@@ -183,6 +183,78 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
 @keyframes float{from{transform:translateY(0);opacity:1}to{transform:translateY(-110px);opacity:0}}
 .cheer{position:absolute;top:-54px;left:27px;width:96px;height:56px;animation:bob .5s infinite alternate;z-index:0}
 @keyframes bob{to{transform:translateY(-10px)}}
+/* ฉากแข่ง (วิ่ง / รถแข่ง): สองเลน วิ่งจากซ้ายไปเส้นชัยด้านขวา */
+#arena.race #space,#arena.race .fighter{display:none}
+#arena:not(.race) #race{display:none}
+#race{position:absolute;inset:0;overflow:hidden;pointer-events:none;--ru:70px;background:#7fd0ff}
+#race .sky{position:absolute;left:0;right:0;top:0;height:34%}
+#race .sky svg{width:100%;height:100%;display:block}
+#race .ground{position:absolute;left:0;right:0;top:20%;bottom:0}
+#race .lane{position:absolute;left:0;right:0;height:32%;box-sizing:border-box;border-top:3px solid #fff;border-bottom:3px solid #fff}
+#race .l1{top:20%}#race .l2{top:56%}
+#race .startl{position:absolute;top:20%;height:68%;width:5px;background:#fff;opacity:.9}
+#race .finl{position:absolute;top:19%;height:70%;right:20px;width:14px;background:repeating-conic-gradient(#222 0 25%,#fff 0 50%) 0 0/14px 14px}
+.t-run .ground{background:linear-gradient(#6ccf6a,#4aa953)}
+.t-run .lane{background-color:#d9674a;background-image:repeating-linear-gradient(90deg,transparent 0 44px,#ffffff22 44px 48px)}
+.t-car{background:#ffb27a!important}
+.t-car .ground{background:linear-gradient(#5fae55,#3f8d4a)}
+.t-car .lane{background-color:#3d4052;background-image:linear-gradient(90deg,#ffe066 50%,transparent 50%);background-size:44px 5px;background-repeat:repeat-x;background-position:0 50%}
+.racer{position:absolute;width:calc(var(--ru)*1.35);height:var(--ru);z-index:2;left:10px;transition:left .65s cubic-bezier(.3,.6,.3,1)}
+#rfoe{top:22%}#rme{top:58%}
+.racer .rin{position:absolute;inset:0}
+.racer .rin>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.racer .rv1{z-index:3}
+.racer .who{position:absolute;z-index:2;display:block;width:calc(var(--ru)*.5);height:calc(var(--ru)*.5)}
+.racer .who svg.brows{position:absolute;inset:0}
+.racer.go .rin{animation:rbob .2s ease-in-out infinite alternate}
+@keyframes rbob{to{transform:translateY(-4px)}}
+.legA,.legB,.armA,.armB,.wheel{transform-box:view-box}
+.legA{transform-origin:64px 68px;transform:rotate(-20deg)}.legB{transform-origin:64px 68px;transform:rotate(20deg)}
+.armA{transform-origin:64px 46px;transform:rotate(20deg)}.armB{transform-origin:64px 46px;transform:rotate(-20deg)}
+.racer.go .legA{animation:lg .26s ease-in-out infinite alternate}
+.racer.go .legB{animation:lg .26s ease-in-out infinite alternate-reverse}
+.racer.go .armA{animation:lg .26s ease-in-out infinite alternate-reverse}
+.racer.go .armB{animation:lg .26s ease-in-out infinite alternate}
+@keyframes lg{from{transform:rotate(-40deg)}to{transform:rotate(40deg)}}
+.wl1{transform-origin:30px 78px}.wl2{transform-origin:104px 78px}
+.racer.go .wheel{animation:wspin .22s linear infinite}
+@keyframes wspin{to{transform:rotate(360deg)}}
+.racer.wrecked .rin{filter:grayscale(.85) brightness(.6)}
+.t-swim .racer.wrecked .rin{filter:none;opacity:.8}
+.racer .ghost{left:calc(var(--ru)*.35);top:calc(var(--ru)*-.3);width:calc(var(--ru)*.7);height:calc(var(--ru)*.7)}
+.puff{position:absolute;z-index:1;width:14px;height:14px;border-radius:50%;background:#fff;opacity:.8;animation:puff .6s forwards;pointer-events:none}
+@keyframes puff{to{transform:translate(-26px,-8px) scale(2.2);opacity:0}}
+.t-train{background:#9ad8ff!important}
+.t-train .ground{background:linear-gradient(#8bc16a,#5f9a52)}
+.t-train .lane{background-color:#cdbf9d;background-image:linear-gradient(#4a4a55,#4a4a55),repeating-linear-gradient(90deg,#7a5a30 0 10px,transparent 10px 30px);background-size:100% 5px,100% 9%;background-repeat:no-repeat,repeat-x;background-position:0 80%,0 96%}
+.t-swim{background:#8fd8ff!important}
+.t-swim .ground{background:#f1e4c3}
+.t-swim .lane{background-color:#39b0ea;background-image:repeating-linear-gradient(90deg,transparent 0 56px,#ffffff30 56px 60px);border:0}
+.t-swim .lane::before,.t-swim .lane::after{content:"";position:absolute;left:0;right:0;height:7px;background:repeating-linear-gradient(90deg,#e94b4b 0 14px,#fff 14px 28px)}
+.t-swim .lane::before{top:-3px}.t-swim .lane::after{bottom:-3px}
+.t-shop{background:#a9c9ff!important}
+.t-shop .ground{background:#8a879b}
+.t-shop .lane{background-color:#cfccdb;background-image:repeating-linear-gradient(90deg,transparent 0 58px,#ffffff66 58px 62px)}
+.t-shop .finl{display:none}
+#race .shopb{display:none;position:absolute;right:0;bottom:12%;top:6%;width:calc(var(--ru)*1.5);z-index:1}
+.t-shop .shopb{display:block}
+#race .shopb svg{width:100%;height:100%;display:block}
+.armW{transform-box:view-box;transform-origin:62px 46px}
+.armW1{transform:rotate(-70deg)}.armW2{transform:rotate(110deg)}
+.racer.go .armW1{animation:wspin .55s linear infinite}
+.racer.go .armW2{animation:wspin .55s linear infinite;animation-delay:-.275s}
+.puff.smoke{width:18px;height:18px;background:#e8e8f0;animation:smoke2 1s forwards}
+@keyframes smoke2{to{transform:translate(-12px,-44px) scale(2.4);opacity:0}}
+.puff.splash{width:12px;height:12px;background:#e4f8ff;animation:splash .6s forwards}
+@keyframes splash{to{transform:translate(-14px,-24px) scale(1.9);opacity:0}}
+.tear{position:absolute;z-index:5;pointer-events:none;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 30%,#fff 0 18%,#6fd0ff 24%,#1f8fe0);opacity:0}
+.tline{position:absolute;z-index:4;width:6px;border-radius:3px;background:linear-gradient(#cdefff,#4fb9f5);opacity:0;pointer-events:none}
+.sob{position:absolute;z-index:6;font-weight:800;color:#fff;text-shadow:0 2px 0 #1f5fa0,0 0 8px #1f8fe0;font-size:20px;pointer-events:none;white-space:nowrap;animation:sob 1.1s forwards}
+@keyframes sob{from{transform:translateY(0) scale(.7);opacity:0}20%{opacity:1}to{transform:translateY(-34px) scale(1.15);opacity:0}}
+.who.cry{animation:cryshake .09s infinite alternate}
+@keyframes cryshake{from{transform:translate(-2px,0) rotate(-3deg)}to{transform:translate(2px,0) rotate(3deg)}}
+#banner{position:absolute;left:50%;top:46%;z-index:6;pointer-events:none;background:#000b;border:3px solid var(--gold);color:#fff;padding:10px 20px;border-radius:18px;font-weight:800;font-size:clamp(20px,6vw,28px);white-space:nowrap;opacity:0;transform:translate(-50%,-50%);animation:ban 2.2s forwards}
+@keyframes ban{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}12%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}20%{transform:translate(-50%,-50%) scale(1)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1)}}
 #card{margin:8px;padding:10px 12px 12px;background:var(--panel);border:4px solid var(--glass);border-radius:24px;text-align:center}
 #wordrow{display:flex;align-items:center;justify-content:center;gap:14px}
 #emoji{width:clamp(56px,16vw,84px);height:clamp(56px,16vw,84px);flex:none}
@@ -305,6 +377,11 @@ button:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
     </svg>
     <canvas id="fxa"></canvas>
     <div id="dbg"></div>
+    <div id="race" aria-hidden="true">
+      <div class="sky"></div><div class="ground"></div><div class="lane l1"></div><div class="lane l2"></div><div class="startl"></div><div class="finl"></div><div class="shopb"><svg viewBox="0 0 150 200" preserveAspectRatio="xMaxYMax meet"><rect x="6" y="44" width="138" height="156" fill="#f4f1ea" stroke="#222" stroke-width="3"/><rect x="2" y="12" width="146" height="34" rx="5" fill="#2d6ad6" stroke="#222" stroke-width="3"/><circle cx="26" cy="29" r="9" fill="#ff9a2e" stroke="#222" stroke-width="2"/><text x="86" y="37" text-anchor="middle" font-size="21" font-weight="800" fill="#fff">ร้านส้ม</text><g stroke="#222" stroke-width="2"><path d="M6 48H144V72Q132 82 120 72Q108 82 96 72Q84 82 72 72Q60 82 48 72Q36 82 24 72Q12 82 6 72Z" fill="#ffd23f"/></g><path d="M30 48V76M54 48V76M78 48V76M102 48V76M126 48V76" stroke="#2d6ad6" stroke-width="12" opacity=".9"/><rect x="52" y="100" width="46" height="100" fill="#bfe9ff" stroke="#222" stroke-width="3"/><path d="M75 100V200" stroke="#222" stroke-width="3"/><rect x="68" y="146" width="3" height="14" fill="#222"/><rect x="79" y="146" width="3" height="14" fill="#222"/><rect x="12" y="92" width="34" height="62" fill="#bfe9ff" stroke="#222" stroke-width="3"/><rect x="104" y="92" width="34" height="62" fill="#bfe9ff" stroke="#222" stroke-width="3"/><path d="M12 112H46M12 132H46M104 112H138M104 132H138" stroke="#fff" stroke-width="4" opacity=".8"/><rect x="108" y="96" width="26" height="12" rx="3" fill="#e94b4b"/><text x="121" y="106" text-anchor="middle" font-size="10" font-weight="800" fill="#fff">เปิด</text></svg></div>
+      <div class="racer" id="rfoe"></div><div class="racer" id="rme"></div>
+    </div>
+    <div id="banner"></div>
     
     <div class="fighter" id="me"><div class="hp"></div><div class="tank"><span class="who"></span><span class="body"></span></div></div>
     <div class="fighter" id="mon"><div class="hp"></div><div class="tank"><span class="who"></span><span class="body"></span></div></div>
@@ -754,9 +831,138 @@ function render(){
 }
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a}
 
+// ===== รูปแบบเกมสุ่มทุกครั้งที่เริ่มด่าน: รถถังยิงกัน / วิ่งแข่ง / รถแข่ง (ซ้ำได้) =====
+const THEMES=["tank","run","car","train","swim","shop"];let theme="tank";
+const TH={
+  tank:{banner:"วันนี้รถถังยิงกัน!",tip:"เสียงของคุณสามารถช่วยกำจัด<br>มอนสเตอร์ได้ ให้พูดออกเสียง<br>ตามคำที่แสดบนหน้าจอ",ok:"เก่งมาก! ยิงโดนแล้ว",late:"ช้าไป โดนยิงแล้ว"},
+  run:{banner:"วันนี้วิ่งแข่ง!",tip:"เสียงของคุณช่วยให้วิ่งนำไป<br>ถึงเส้นชัยก่อนได้ ให้พูดออก<br>เสียงตามคำที่แสดงบนหน้าจอ",ok:"เก่งมาก! วิ่งขึ้นแล้ว",late:"ช้าไป โดนแซงแล้ว"},
+  car:{banner:"วันนี้แข่งรถ!",tip:"เสียงของคุณช่วยให้รถแซงไป<br>ถึงเส้นชัยก่อนได้ ให้พูดออก<br>เสียงตามคำที่แสดงบนหน้าจอ",ok:"เก่งมาก! แซงขึ้นแล้ว",late:"ช้าไป โดนแซงแล้ว"},
+  train:{banner:"วันนี้รถไฟแข่งกัน!",tip:"เสียงของคุณช่วยให้รถไฟแล่น<br>ไปถึงสถานีก่อนได้ ให้พูดออก<br>เสียงตามคำที่แสดงบนหน้าจอ",ok:"เก่งมาก! รถไฟแล่นขึ้นแล้ว",late:"ช้าไป โดนแซงแล้ว"},
+  swim:{banner:"วันนี้ว่ายน้ำแข่ง!",tip:"เสียงของคุณช่วยให้ว่ายไปถึง<br>ขอบสระก่อนได้ ให้พูดออก<br>เสียงตามคำที่แสดงบนหน้าจอ",ok:"เก่งมาก! ว่ายขึ้นแล้ว",late:"ช้าไป โดนแซงแล้ว"},
+  shop:{banner:"วันนี้วิ่งไปร้านสะดวกซื้อ!",tip:"เสียงของคุณช่วยให้วิ่งไปถึง<br>ร้านก่อนได้ ให้พูดออก<br>เสียงตามคำที่แสดงบนหน้าจอ",ok:"เก่งมาก! วิ่งขึ้นแล้ว",late:"ช้าไป โดนแซงแล้ว"}
+};
+const NOSE={run:.66,car:.96,train:.98,swim:.74,shop:.66};
+TH.tank.tip=TH.tank.tip.replace("แสดบน","แสดงบน");
+const THEME_Q=new URLSearchParams(location.search).get("theme");
+const pickTheme=()=>THEMES.includes(THEME_Q)?THEME_Q:THEMES[Math.random()*THEMES.length|0];
+const RC={ru:70,rw:94,W:360,nose:.9,fin:340}; // nose = ตำแหน่งหัวของพาหนะในกรอบ (เศษส่วนของความกว้าง) ใช้คำนวณให้หัวชนเส้นชัยพอดี
+const SKIN="#f7c58b";
+// นักวิ่ง: ขา/แขนแกว่งตอนวิ่ง (ชั้นหลัง = ขาแขนข้างไกล, ชั้นหน้า = ลำตัวและขาแขนข้างใกล้)
+const RUNNER=(shirt,shorts,num)=>({
+  face:{l:27.5,t:0},
+  back:`<ellipse cx="66" cy="96" rx="30" ry="4" fill="#0003"/><g class="legB"><path d="M64 68V90" stroke="${SKIN}" stroke-width="9" stroke-linecap="round"/><ellipse cx="68" cy="93" rx="9" ry="5" fill="#fff" stroke="#222" stroke-width="2"/></g><g class="armB"><path d="M64 46V64" stroke="${shirt}" stroke-width="8" stroke-linecap="round"/><circle cx="64" cy="66" r="4.5" fill="${SKIN}"/></g>`,
+  front:`<g class="legA"><path d="M64 68V90" stroke="${SKIN}" stroke-width="9" stroke-linecap="round"/><ellipse cx="68" cy="93" rx="9" ry="5" fill="#fff" stroke="#222" stroke-width="2"/></g><rect x="50" y="38" width="28" height="32" rx="11" fill="${shirt}" stroke="#222" stroke-width="2.5"/><rect x="50" y="48" width="28" height="6" fill="#fff" opacity=".9"/><rect x="50" y="62" width="28" height="12" rx="5" fill="${shorts}" stroke="#222" stroke-width="2.5"/><g class="armA"><path d="M64 46V64" stroke="${shirt}" stroke-width="8" stroke-linecap="round"/><circle cx="64" cy="66" r="4.5" fill="${SKIN}"/></g>`
+});
+// รถแข่ง: หัวตัวละครโผล่จากที่นั่ง ตัวรถบังครึ่งล่าง ล้อหมุนตอนวิ่ง
+const RACECAR=(c1,c2,num)=>({
+  face:{l:30,t:-2},
+  back:`<ellipse cx="68" cy="95" rx="60" ry="4.5" fill="#0003"/><rect x="5" y="38" width="10" height="26" rx="2" fill="${c2}" stroke="#222" stroke-width="2.5"/>`,
+  front:`<path d="M6 70Q6 56 20 54L46 52Q58 44 72 48L94 52Q116 54 126 63Q132 67 130 73L130 77L6 77Z" fill="${c1}" stroke="#222" stroke-width="3" stroke-linejoin="round"/><path d="M14 64H120" stroke="${c2}" stroke-width="5"/><circle cx="98" cy="68" r="7" fill="#fff" stroke="#222" stroke-width="2"/><text x="98" y="72.5" text-anchor="middle" font-size="11" font-weight="800" fill="#222">${num}</text><g class="wheel wl1"><circle cx="30" cy="78" r="15" fill="#222"/><circle cx="30" cy="78" r="8" fill="#d8d8e0"/><path d="M30 70V86M22 78H38" stroke="#666" stroke-width="3"/></g><g class="wheel wl2"><circle cx="104" cy="78" r="15" fill="#222"/><circle cx="104" cy="78" r="8" fill="#d8d8e0"/><path d="M104 70V86M96 78H112" stroke="#666" stroke-width="3"/></g>`
+});
+// รถไฟไอน้ำ: หัวตัวละครโผล่จากห้องคนขับ ล้อหมุน ควันพุ่งจากปล่อง
+const TRAIN=(c1,c2)=>{const wh=(x)=>`<g class="wheel" style="transform-origin:${x}px 80px"><circle cx="${x}" cy="80" r="13" fill="#444" stroke="#222" stroke-width="2.5"/><circle cx="${x}" cy="80" r="5" fill="${c2}"/><path d="M${x} 68V92M${x-12} 80H${x+12}" stroke="#222" stroke-width="2.5"/></g>`;
+  return {face:{l:4,t:-4},
+  back:`<ellipse cx="68" cy="95" rx="60" ry="4.5" fill="#0003"/>`,
+  front:`<rect x="6" y="46" width="48" height="34" rx="4" fill="${c1}" stroke="#222" stroke-width="2.5"/><rect x="2" y="42" width="56" height="7" rx="2" fill="${c2}" stroke="#222" stroke-width="2.5"/><rect x="22" y="56" width="18" height="12" rx="2" fill="#bfe9ff" stroke="#222" stroke-width="2"/><rect x="54" y="52" width="68" height="28" rx="10" fill="${c1}" stroke="#222" stroke-width="2.5"/><rect x="104" y="36" width="11" height="18" fill="#333" stroke="#222" stroke-width="2"/><path d="M101 37h17l-3-7h-11z" fill="#333" stroke="#222" stroke-width="2" stroke-linejoin="round"/><circle cx="80" cy="50" r="8" fill="${c2}" stroke="#222" stroke-width="2.5"/><path d="M54 66H122" stroke="${c2}" stroke-width="4"/><path d="M122 80L134 92V80Z" fill="#666" stroke="#222" stroke-width="2" stroke-linejoin="round"/><circle cx="124" cy="62" r="5" fill="#ffe066" stroke="#222" stroke-width="2"/>${wh(26)}${wh(66)}${wh(100)}`}};
+// นักว่ายน้ำ: หัวโผล่พ้นน้ำ แขนหมุนตีน้ำ คลื่นขาวที่ผิวน้ำ
+const SWIMMER=()=>({face:{l:31,t:-4},
+  back:`<g class="armW armW1"><path d="M62 46L62 20" stroke="${SKIN}" stroke-width="8" stroke-linecap="round"/><circle cx="62" cy="17" r="5" fill="${SKIN}"/></g><g class="armW armW2"><path d="M62 46L62 20" stroke="${SKIN}" stroke-width="8" stroke-linecap="round"/><circle cx="62" cy="17" r="5" fill="${SKIN}"/></g>`,
+  front:`<path d="M-14 44Q2 39 18 44T50 44T82 44T114 44T146 44V120H-14Z" fill="#39b0ea" fill-opacity=".94"/><path d="M-14 44Q2 39 18 44T50 44T82 44T114 44T146 44" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="22" cy="54" r="3" fill="#fff" opacity=".6"/><circle cx="98" cy="62" r="2.5" fill="#fff" opacity=".6"/>`});
+const SKY_TRAIN=`<svg viewBox="0 0 400 100" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="skt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6cc0ff"/><stop offset="1" stop-color="#dff3ff"/></linearGradient></defs><rect width="400" height="100" fill="url(#skt)"/><g fill="#fff"><ellipse cx="90" cy="26" rx="28" ry="9"/><ellipse cx="300" cy="20" rx="24" ry="8"/></g><path d="M0 100V66L60 40L120 70L190 36L260 72L330 44L400 68V100Z" fill="#7aa9c9"/><path d="M0 100V84L80 66L160 86L250 64L340 86L400 74V100Z" fill="#6fae69"/><g fill="#3f8a46"><circle cx="30" cy="86" r="8"/><circle cx="210" cy="88" r="9"/><circle cx="360" cy="86" r="8"/></g></svg>`;
+const SKY_SWIM=`<svg viewBox="0 0 400 100" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="sks" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#58c4ff"/><stop offset="1" stop-color="#e6f8ff"/></linearGradient></defs><rect width="400" height="100" fill="url(#sks)"/><circle cx="60" cy="24" r="14" fill="#ffe066"/><g fill="#fff"><ellipse cx="200" cy="22" rx="26" ry="8"/><ellipse cx="320" cy="34" rx="20" ry="7"/></g><g fill="#2e8f5a"><path d="M300 100V60" stroke="#6b4a2a" stroke-width="5"/><path d="M300 60Q280 50 270 62Q286 56 300 62Q314 56 330 62Q320 50 300 60Z"/><path d="M360 100V68" stroke="#6b4a2a" stroke-width="4"/><path d="M360 68Q344 60 336 70Q350 65 360 70Q370 65 384 70Q376 60 360 68Z"/></g><rect y="86" width="400" height="14" fill="#f4e7c4"/></svg>`;
+const SKY_SHOP=`<svg viewBox="0 0 400 100" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="skp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fb2ff"/><stop offset="1" stop-color="#e9f1ff"/></linearGradient></defs><rect width="400" height="100" fill="url(#skp)"/><g fill="#fff"><ellipse cx="80" cy="22" rx="26" ry="8"/><ellipse cx="240" cy="16" rx="22" ry="7"/></g><g fill="#7d86b8"><rect x="10" y="48" width="34" height="52"/><rect x="52" y="34" width="28" height="66"/><rect x="92" y="54" width="40" height="46"/><rect x="146" y="40" width="30" height="60"/><rect x="190" y="56" width="36" height="44"/><rect x="238" y="30" width="30" height="70"/><rect x="280" y="50" width="40" height="50"/></g><g fill="#ffe9a8" opacity=".8"><rect x="18" y="56" width="6" height="6"/><rect x="30" y="68" width="6" height="6"/><rect x="60" y="44" width="6" height="6"/><rect x="62" y="62" width="6" height="6"/><rect x="154" y="52" width="6" height="6"/><rect x="246" y="42" width="6" height="6"/><rect x="258" y="60" width="6" height="6"/></g></svg>`;
+const SKY_RUN=`<svg viewBox="0 0 400 100" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="skr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#58b8ff"/><stop offset="1" stop-color="#cdeeff"/></linearGradient></defs><rect width="400" height="100" fill="url(#skr)"/><circle cx="340" cy="26" r="15" fill="#ffe066"/><g fill="#fff" opacity=".95"><ellipse cx="70" cy="30" rx="26" ry="9"/><ellipse cx="92" cy="24" rx="18" ry="8"/><ellipse cx="210" cy="18" rx="22" ry="8"/><ellipse cx="226" cy="14" rx="14" ry="6"/></g><path d="M0 100V72Q60 52 120 74T250 68T400 72V100Z" fill="#7ccf72"/><path d="M0 100V84Q90 68 180 86T400 82V100Z" fill="#5dbb62"/><g fill="#3f9a4a"><circle cx="40" cy="80" r="9"/><circle cx="150" cy="84" r="7"/><circle cx="300" cy="80" r="10"/><circle cx="370" cy="84" r="7"/></g></svg>`;
+const SKY_CAR=`<svg viewBox="0 0 400 100" preserveAspectRatio="xMidYMax slice"><defs><linearGradient id="skc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8a6b"/><stop offset="1" stop-color="#ffe2a8"/></linearGradient></defs><rect width="400" height="100" fill="url(#skc)"/><circle cx="300" cy="62" r="22" fill="#fff3b0"/><path d="M0 100V70L50 44L96 76L150 40L210 78L270 46L330 80L370 56L400 72V100Z" fill="#8f5fb8"/><path d="M0 100V86L60 66L120 88L190 64L260 90L330 70L400 86V100Z" fill="#6a3f94"/></svg>`;
+const RDEF={
+  run:{sky:SKY_RUN,me:RUNNER("#ff7a2f","#2a5bd7","1"),foe:RUNNER("#8a3fd0","#ffd23f","2")},
+  car:{sky:SKY_CAR,me:RACECAR("#e8343f","#fff","1"),foe:RACECAR("#7a35c9","#ffd23f","2")},
+  train:{sky:SKY_TRAIN,me:TRAIN("#2f8f4f","#ffd23f"),foe:TRAIN("#c0392b","#fff")},
+  swim:{sky:SKY_SWIM,me:SWIMMER(),foe:SWIMMER()},
+  shop:{sky:SKY_SHOP,me:RUNNER("#3bb87a","#2a5bd7","1"),foe:RUNNER("#d94a6a","#444","2")}
+};
+function buildRacer(el,spec,faceSvg){
+  el.className="racer";el.style.transition="none";
+  el.innerHTML=`<div class="rin"><svg viewBox="0 0 135 100">${spec.back}</svg><span class="who" style="left:${spec.face.l}%;top:${spec.face.t}%"></span><svg class="rv1" viewBox="0 0 135 100">${spec.front}</svg></div>`;
+  el.querySelector(".who").innerHTML=faceSvg;
+}
+function racePos(anim){
+  const end=RC.fin-RC.nose*RC.rw;
+  [["#rme",MAXHP-ehp],["#rfoe",MAXHP-php]].forEach(([q,v])=>{const e=$(q),f=Math.max(0,Math.min(1,v/MAXHP));
+    e.style.transition=anim?"":"none";e.style.left=(10+f*(end-10))+"px";if(!anim){e.offsetWidth;e.style.transition=""}});
+}
+function raceSize(){
+  const ar=$("#arena"),H=ar.clientHeight,W=ar.clientWidth;
+  RC.ru=Math.max(46,Math.min(104,H*.3));RC.rw=RC.ru*1.35;RC.W=W;RC.nose=NOSE[theme]||.9;RC.fin=theme==="shop"?W-RC.ru*.75:W-20;
+  $("#race").style.setProperty("--ru",RC.ru+"px");$("#race .startl").style.left=(10+RC.nose*RC.rw+8)+"px";
+}
+function setupTheme(){
+  const T=TH[theme],ar=$("#arena");
+  ar.classList.toggle("race",theme!=="tank");
+  $("#hud .tip").innerHTML=T.tip;
+  const b=$("#banner");b.textContent=T.banner;b.style.animation="none";b.offsetWidth;b.style.animation="";
+  document.querySelectorAll(".puff").forEach(n=>n.remove());
+  if(theme==="tank")return;
+  const r=$("#race");r.className="t-"+theme;raceSize();
+  const D=RDEF[theme],k=CHARS[ch][0];
+  r.querySelector(".sky").innerHTML=D.sky;
+  buildRacer($("#rme"),D.me,ART[k]);buildRacer($("#rfoe"),D.foe,ART.monster);
+  racePos(false);
+}
+addEventListener("resize",()=>{if(theme!=="tank"&&$("#game").classList.contains("on")){raceSize();racePos(false)}});
+function puffs(el){
+  const r=$("#race");
+  const mk=(dx,dy,cls)=>{const rr=r.getBoundingClientRect(),er=el.getBoundingClientRect();
+    const pf=document.createElement("div");pf.className="puff "+cls;pf.style.left=(er.left-rr.left+dx)+"px";pf.style.top=(er.top-rr.top+dy)+"px";r.appendChild(pf);setTimeout(()=>pf.remove(),1300)};
+  const at=(ms,f)=>setTimeout(f,ms);
+  if(theme==="train")for(let i=0;i<5;i++)at(i*130,()=>mk(RC.rw*.8,RC.ru*.26,"smoke"));
+  else if(theme==="swim")for(let i=0;i<5;i++)at(i*120,()=>mk(RC.rw*(.28+(i%3)*.1),RC.ru*.5,"splash"));
+  else for(let i=0;i<3;i++)at(i*90,()=>mk(RC.rw*.18,RC.ru*.8-i*4,""));
+}
+// เสียงประกอบตามประเภท: วิ่ง/ร้านสะดวกซื้อ=ฝีเท้า, รถแข่ง=บรึ้นๆ, รถไฟ=ฉึกฉัก, ว่ายน้ำ=จ๋อมแจ๋ม
+function nz(c,t,d,type,f,q,vol,dec){
+  const src=c.createBufferSource();src.buffer=noiseBuf(c,d+.05);const fl=c.createBiquadFilter(),g=c.createGain();
+  fl.type=type;fl.frequency.value=f;fl.Q.value=q;
+  g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.008);g.gain.exponentialRampToValueAtTime(.001,t+dec);
+  src.connect(fl);fl.connect(g);g.connect(master);src.start(t);src.stop(t+d+.05);
+}
+function sn(c,t,f1,f2,d,vol,type){
+  const o=c.createOscillator(),g=c.createGain();o.type=type||"sine";o.frequency.setValueAtTime(f1,t);o.frequency.exponentialRampToValueAtTime(f2,t+d);
+  g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.02);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(master);o.start(t);o.stop(t+d+.03);
+}
+function raceSfx(ok){const c=ac();if(!c)return;try{const t=c.currentTime+.02,v=ok?1:.6;
+  if(theme==="run"||theme==="shop"){for(let i=0;i<7;i++)nz(c,t+i*.1,.07,"lowpass",i%2?600:900,.8,.9*v,.09)}
+  else if(theme==="train"){for(let i=0;i<4;i++){const t0=t+i*.18;nz(c,t0,.09,"bandpass",1500,.7,.8*v,.1);nz(c,t0+.075,.06,"bandpass",2400,.8,.6*v,.07);sn(c,t0,95,60,.1,.5*v)}
+    if(ok){sn(c,t+.5,520,520,.28,.22,"triangle");sn(c,t+.5,660,660,.28,.2,"triangle")}}
+  else if(theme==="swim"){for(let i=0;i<3;i++){const t0=t+i*.22;nz(c,t0,.16,"bandpass",900+i*150,.6,.9*v,.2);sn(c,t0+.05,260,700,.13,.22*v)}
+    sn(c,t+.55,170,70,.2,.35*v)}
+  else if(theme==="car"){const f=ok?1:.7;[0,.34].forEach((d,i)=>{const o=c.createOscillator(),g=c.createGain(),fl=c.createBiquadFilter();o.type="sawtooth";fl.type="lowpass";fl.frequency.value=800;
+    o.frequency.setValueAtTime(85*f,t+d);o.frequency.exponentialRampToValueAtTime((i?400:280)*f,t+d+.28);g.gain.setValueAtTime(.0001,t+d);g.gain.exponentialRampToValueAtTime(.32*v,t+d+.04);g.gain.exponentialRampToValueAtTime(.001,t+d+.3);
+    o.connect(fl);fl.connect(g);g.connect(master);o.start(t+d);o.stop(t+d+.33)})}
+}catch(e){}}
+// ตัวละครเราโดนแซง: ร้องไห้ตลก ๆ น้ำตาพุ่งเป็นน้ำพุจากสองตา มีแถบน้ำตาไหลลงแก้ม หน้าสั่น และคำว่า "ฮือๆ" ลอยขึ้น
+function cry(){
+  const who=$("#rme .who"),r=$("#race");if(!who||!r)return;
+  const rr=r.getBoundingClientRect(),wr=who.getBoundingClientRect(),k=CHARS[ch][0],ey=wr.top-rr.top+wr.height*EYEY[k]/100;
+  [.36,.64].forEach((fx,ei)=>{const ex=wr.left-rr.left+wr.width*fx,dir=ei?1:-1;
+    const ln=document.createElement("div");ln.className="tline";ln.style.left=(ex-3)+"px";ln.style.top=(ey+4)+"px";ln.style.height="0px";r.appendChild(ln);
+    ln.animate([{height:"0px",opacity:1},{height:(wr.height*.45)+"px",opacity:1,offset:.5},{height:(wr.height*.45)+"px",opacity:0}],{duration:1000,fill:"forwards"}).onfinish=()=>ln.remove();
+    for(let i=0;i<7;i++){const sz=7+Math.random()*6,d=document.createElement("div");d.className="tear";d.style.cssText=`left:${ex-sz/2}px;top:${ey}px;width:${sz}px;height:${sz*1.3}px`;r.appendChild(d);
+      const vx=dir*(16+Math.random()*34),vy=-(12+Math.random()*26);
+      d.animate([{transform:"translate(0,0)",opacity:1},{transform:`translate(${vx*.6}px,${vy}px)`,opacity:1,offset:.4},{transform:`translate(${vx}px,${vy+70+Math.random()*30}px)`,opacity:0}],{duration:800+Math.random()*300,delay:i*70,easing:"ease-in",fill:"forwards"}).onfinish=()=>d.remove()}
+  });
+  const sb=document.createElement("div");sb.className="sob";sb.textContent="ฮือๆ";sb.style.left=(wr.left-rr.left+wr.width*.2)+"px";sb.style.top=(wr.top-rr.top-14)+"px";r.appendChild(sb);setTimeout(()=>sb.remove(),1200);
+  who.classList.add("cry");setTimeout(()=>who.classList.remove("cry"),1000);
+}
+// ตอบถูก: ตัวเราวิ่งขึ้น 1 ก้าว / ตอบผิดหรือช้า: คู่แข่งวิ่งขึ้น 1 ก้าว
+function raceStep(ok,done){
+  const who=ok?$("#rme"):$("#rfoe");
+  who.classList.add("go");racePos(true);puffs(who);raceSfx(ok);if(!ok)cry();
+  setTimeout(()=>{who.classList.remove("go");done()},700);
+}
+
 function start(){
   stopAll();
-  MAXHP=level==="easy"?5:10;php=ehp=MAXHP;score=0;pool=buildPool();queue=[];lastWord=null;missed={};results=[];bestAcc=0;playing=true;
+  theme=pickTheme();MAXHP=level==="easy"?5:10;php=ehp=MAXHP;score=0;pool=buildPool();queue=[];lastWord=null;missed={};results=[];bestAcc=0;playing=true;
   document.querySelectorAll(".ghost,.cheer,.boom").forEach(n=>n.remove());
   ac();initVoice();
   
@@ -765,7 +971,7 @@ function start(){
   $("#mon .who").innerHTML=ART.monster;$("#mon .who").style.visibility="visible";
   $("#me .body").innerHTML=TANK_ME;$("#mon .body").innerHTML=TANK_EN;
   $("#mic").style.display=SR?"":"none";
-  show("game");render();nextWord(); // เรียกทันทีในจังหวะที่ผู้เล่นกด เพื่อให้เบราว์เซอร์ยอมเล่นเสียงพูด
+  show("game");setupTheme();render();nextWord(); // เรียกทันทีในจังหวะที่ผู้เล่นกด เพื่อให้เบราว์เซอร์ยอมเล่นเสียงพูด
 }
 function stopAll(){playing=false;armed=false;fxArena=false;fxOn=false;stopSpeech();clearTimeout(tmo);try{rec&&rec.abort()}catch(e){}rec=null;recLive=false;micReady=false;$("#mic").classList.remove("live")}
 
@@ -837,15 +1043,16 @@ function judge(ok,heard,timeout,lowconf,conf){
   bump(ok?1:-1);dbg((ok?"ถูก +1":"ผิด −1")+" → คะแนน "+score);
   const fb=$("#fb");
   fb.style.color=ok?"var(--ok)":"var(--bad)";
-  fb.textContent=ok?"เก่งมาก! ยิงโดนแล้ว"+(typeof conf==="number"?` (แม่นยำ ${conf}%)`:""):(timeout?"ช้าไป โดนยิงแล้ว":lowconf?`ยังไม่ชัดพอ (แม่นยำ ${conf}% ต้อง ${Math.round(LEVELS[level].pass*100)}%)`:"ลองใหม่นะ"+(heard?` (ได้ยินว่า “${heard}”)`:""));
+  fb.textContent=ok?TH[theme].ok+(typeof conf==="number"?` (แม่นยำ ${conf}%)`:""):(timeout?TH[theme].late:lowconf?`ยังไม่ชัดพอ (แม่นยำ ${conf}% ต้อง ${Math.round(LEVELS[level].pass*100)}%)`:"ลองใหม่นะ"+(heard?` (ได้ยินว่า “${heard}”)`:""));
   setTimeout(()=>tone(ok?880:200,.25,ok?"triangle":"sawtooth"),480);
   if(!testMode){if(ok)ehp--;else php--}
-  shoot(ok?$("#me"):$("#mon"),ok?$("#mon"):$("#me"),()=>{
+  const after=()=>{
     render();
     if(ehp<=0)return finish(true);
     if(php<=0)return finish(false);
     setTimeout(nextWord,900);
-  });
+  };
+  if(theme==="tank")shoot(ok?$("#me"):$("#mon"),ok?$("#mon"):$("#me"),after);else raceStep(ok,after);
 }
 
 function shoot(from,to,done){
@@ -867,11 +1074,13 @@ function shoot(from,to,done){
 
 function finish(win){
   playing=false;armed=false;clearTimeout(tmo);stopSpeech();setTimeout(warmTTS,200);
-  const loser=win?$("#mon"):$("#me"),winner=win?$("#me"):$("#mon");
+  const race=theme!=="tank";
+  const loser=race?(win?$("#rfoe"):$("#rme")):(win?$("#mon"):$("#me")),winner=race?(win?$("#rme"):$("#rfoe")):(win?$("#me"):$("#mon"));
   loser.querySelector(".who").style.visibility="hidden";
-  const g=document.createElement("div");g.className="ghost";g.innerHTML=ART.ghost;loser.querySelector(".tank").appendChild(g);loser.classList.add("wrecked");
+  const g=document.createElement("div");g.className="ghost";g.innerHTML=ART.ghost;(race?loser:loser.querySelector(".tank")).appendChild(g);loser.classList.add("wrecked");
+  if(race)winner.classList.add("go");
   if(win){ // ตัวละครยิ้มกว้าง ตาหยี แก้มแดง และมีพลุยิงอยู่ฉากหลัง
-    const k=CHARS[ch][0];$("#me .who").innerHTML=ART[k]+HAPPY(k);
+    const k=CHARS[ch][0];(race?$("#rme .who"):$("#me .who")).innerHTML=ART[k]+HAPPY(k);
     fxArena=true;fireworks($("#fxa"),()=>fxArena);
   }
   fb_end(win);
